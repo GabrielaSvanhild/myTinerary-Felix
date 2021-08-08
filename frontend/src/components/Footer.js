@@ -1,9 +1,13 @@
 const Footer = () => {
    return (
-      <footer>
-         <div className="typewritter">
-         <h4>MYtinerary Proyect 2021 - All Rights Reserved</h4>
-         </div>
+      <footer
+      style={{
+         backgroundImage:`url("/assets/footer.png")`,
+     }}>
+         
+         <h4> © MYtinerary Proyect 2021 - All Rights Reserved</h4>
+
+         
       </footer>
    )
 }

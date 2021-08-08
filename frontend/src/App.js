@@ -1,6 +1,8 @@
-import './App.css'
 import Home from './pages/Home'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "bootstrap/dist/css/bootstrap.min.css"
+import './App.css'
 
 
 const App = () => {
