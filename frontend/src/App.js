@@ -1,30 +1,22 @@
 import Home from './pages/Home'
+import Cities from './pages/Cities'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css'
+import NotFound from './pages/NotFound';
 
 
 const App = () => {
    return(
-
-   <BrowserRouter>
-   <Switch>
-      <Route exact path='/' component={Home} />
- {/*      <Route
-         path='/lista'
-         render={(props) => <Home {...props} invitados={invitados} />}
-      />
-      <Route
-         path='/form'
-         render={(props) => (
-            <Formulario {...props} pushearInvitado={pushearInvitado} />
-         )}
-      />
-      <Route path='/notFound' component={Cmpt404} />
-      <Redirect to='/notFound' /> */}
-   </Switch>
-</BrowserRouter>
+      <BrowserRouter>
+         <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/cities' component={Cities} />
+            <Route path='/notFound' component={NotFound}/>
+            <Redirect to="/notFound"/>
+         </Switch>
+      </BrowserRouter>
    )
   
 }

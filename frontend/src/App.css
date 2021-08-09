@@ -4,17 +4,15 @@ html * {
     box-sizing: border-box;
     font-family: 'Cinzel', serif;
  }
-/* #root{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-} */
+
 body{
     background-color: #efeae4;
 }
 
+
+/* HEADER */
  .navbar{
-    height: 12vmin !important;
+    min-height: 12vmin !important;
 }  
 .navbar-collapse{
     justify-content: space-between;
@@ -27,15 +25,22 @@ p{
     color: #efeae4;
     font-size: 3vmin;
     margin: 5px 10px;
-    font-family: 'Nixie One', cursive;
 }
 nav a{
     text-decoration: none;
     align-self: center;
 }
-.contenedor-hero{
-    position: relative;
-} 
+
+.logo{
+    align-self: flex-start;
+    margin: 0 1rem;
+    width: 11vmin;
+   
+}
+
+/* HERO */
+
+
 video{
     width: 100%;
     height: 95vh;
@@ -44,67 +49,6 @@ video{
     position: absolute; 
     left: 0px; 
     top: 0px;
-}
-
-
-
-
-.carousel-control-next-icon,.carousel-control-prev-icon {
-    width: 5rem !important;
-    height: 7rem !important;
-    color: #f08a0e;
-
-}
-.carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover {
-    color: #efeae4 !important;
-    text-decoration: none;
-    outline: 0;
-    opacity: 1 !important;
-}
-
-.contenedor-carrousel{
-    display: flex;
-    flex-wrap: wrap;
-   gap: 1rem; 
-    padding: 2rem 4rem;
-    padding-bottom:15vmin; 
-    background-color: #efeae4;
-    
-  /*   margin-top:6rem;
-    margin-left:.6rem; */
-}
-#foto_carrousel{
-    width: 48.5%;
-    height:42vh;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-/* #foto_carrousel:hover{
-    width: 48.9vw;
-    height: 43vh; 
-} */
-/* .carousel-item{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
-.contenedor-logo{
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-}
-.logo{
-    align-self: flex-start;
-    margin: 0 1rem;
-    width: 11vmin;
-   
 }
 .titulo{
     margin: 7%;
@@ -116,18 +60,135 @@ video{
 }
 h1{
     font-size: 14vmin;
+}
+
+.tinerary{
+    font-size: 12vmin; 
+}
+.contenedor_llamada_a_la_accion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:3vmin; 
+    
+}
+.contenedor_llamada_a_la_accion>p{
+    font-family: 'Nixie One', cursive;
+    font-size: 4.5vmin;
+}
+
+.contenedor_llamada_a_la_accion button a{
+    font-family: 'Cinzel', serif;
+    text-decoration: none;
+    color: #efeae4;
+}
+.contenedor_llamada_a_la_accion button a:hover{
+    color: #efeae4;
+}
+.contenedor_llamada_a_la_accion button{
+    margin: 3vmin;
+     width: 22%;
+    background: rgba(255, 255, 255, 0.262); 
+    border: none;
+    padding: 1vmin;
+    border: 1px solid #efeae4;
+    font-size: 4vmin;
+    border-radius: 25px;
+    background-image: -webkit-linear-gradient(top, #efeae47c, #7cd4eda7);
+    background-image: -moz-linear-gradient(top, #efeae47c, #7cd4eda7);
+    background-image: -ms-linear-gradient(top, #efeae47c, #7cd4eda7);
+    background-image: -o-linear-gradient(top, #efeae47c, #7cd4eda7);
+    background-image: linear-gradient(to bottom, #efeae47c, #7cd4eda7);
+}
+.contenedor_llamada_a_la_accion button:hover {
+    background-color: #060707;
+  }
+
+
+.contenedor-hero{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+.typewriter h4 {
+    text-align: center;
+    font-family: 'Nixie One', cursive;
+    font-size: 4vmin;
+    color: #efeae4;
+}
+
+/* MAIN */
+
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+.container p{
+    color: #486972;
+    font-family: 'Nixie One', cursive;
+}
+.container h3{
+    text-align: center;
+}
+
+.contenedor-titulo-carousel{
+    margin-top:7vmin;
+    align-self:center;
+    background: #efeae4;
+    background: linear-gradient(85deg,#cfe5f4,#efeae4);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: content-box;
+    min-width: 50%;
+    border-radius: 30px;
+}
+.titulo-carousel{
+    text-align: center;
+    font-size: 8vmin;
+    background: #efeae4;
+    background: linear-gradient(85deg,#486972, #abe1fa);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    
+
+  
+}
+.carousel-control-next-icon,.carousel-control-prev-icon {
 
 
 }
-.tinerary{
-    font-size: 12vmin;
-
+.carousel-control-next, .carousel-control-next, .carousel-control-prev, .carousel-control-prev {
+    color: #0c0b09 !important;
     
 }
 
 
+.contenedor-carrousel{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   gap: 1rem; 
+    padding: 2rem 4rem;
+    padding-bottom:15vmin; 
+    background-color: #efeae4;
+    
+}
+#foto_carrousel{
+    min-width: 350px;
+    min-height:250px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 10px;
+}
 
-h3{
+.texto-carousel{
     width: 100%;
     height: 15%;
     text-align: center;
@@ -139,63 +200,127 @@ h3{
     font-size:3vmin;
     text-shadow: 1px 1px 2px black;
 }
+.texto-carousel{
+    transition: .5s;
+}
+
 .texto-carousel:hover{
     font-size:4vmin;
     height: 100%;
     border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.064);   
+}
 
-    
-}
-h4{
-    font-family: 'Nixie One', cursive;
- 
-    font-size: 5vmin;
-    color: #efeae4;
-    text-align: center;
-}
+
+/* FOOTER */
+
 
 footer{
-    align-self: flex-end;
     width: 100%;
     height: 40vh;
     background-size: cover;
-    background-position: center;
+    background-position: 40% 47%;
     display: flex;
-
-   
-   
-  /*   background-image: url("/assets/foto-footer.png"); */
+    flex-direction: column;
+    justify-content: space-between;
 }
 footer h4{
     width: 100%;
     font-size: 3.3vmin;
     text-align: center;
     color: rgb(232, 253, 255);
-    align-self: flex-end;
     margin-bottom: 2vmin;
     text-shadow: 1px 1px 1px rgba(28, 27, 27, 0.66);
     font-family: 'Cinzel', serif;
+}
+
+.contenedor-footer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contenedor-iconos{
+    width: 25%;
+    height: 50%;
+    /* background-color: #f08a0e; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.iconos{
+    color: #efeae4;
+    width: 5vmin;
+    height: 4vmin;
+}
+
+.nav-footer{
+    display: flex;
+    min-width: 35%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+}
+
+.nav-footer a{
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+}
+.pagina_no_encontrada{
+    width: 50vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+
+@media screen and  (min-width:1200px){
    
- 
+    .contenedor-slogan {
+    
+        display: flex;
+        justify-content: center;
+        
+      }
+      
+      /* DEMO-SPECIFIC STYLES */
+      .typewriter h4 {
+        font-family: 'Nixie One', cursive;
+        font-size: 4vmin;
+        color: #efeae4;
+        color: #efeae4;
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        border-right: .15em solid rgb(252, 251, 247); /* The typwriter cursor */
+        white-space: nowrap;  /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        /*letter-spacing: .02em; /* Adjust as needed */
+        animation: 
+          typing 4s steps(30, end),
+          blink-caret .5s step-end infinite;
+      }
+      
+      /* The typing effect */
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+      
+      /* The typewriter cursor effect */
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: rgb(254, 253, 253) }
+      }
+      #foto_carrousel{
+        min-width: 500px;
+        min-height:250px;
+      }
 }
-
-@media screen and  (min-width:576px){
-    h1{
-
-    }
+@media screen and  (min-width:1650px){
+    #foto_carrousel{
+        min-width: 700px;
+        min-height: 650px;
+      }
 }
-
-/* <nav>
-<NavLink exact to='/'>
-   <p>HOME</p>
-</NavLink>
-<NavLink to='/cities'>
-   <p>CITIES</p>
-</NavLink>
-<NavLink to='/sign_up'>
-   <p>SIGN UP</p>
-</NavLink>
-<NavLink to='/sign_in'>
-   <p>SIGN IN</p>
-</NavLink>
-</nav>  */

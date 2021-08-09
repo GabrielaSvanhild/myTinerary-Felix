@@ -6,12 +6,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+
 } from 'reactstrap';
 
 const Navbaar= (props) => {
@@ -20,36 +19,33 @@ const Navbaar= (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar className="p-0" color="light" light expand="md">
-        <NavbarBrand ><img className="logo" src="/assets/logo_mytinerary.png"/></NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-              <img className="logo" src="/assets/logo_mytinerary.png"/>
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-             </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-          <div>
-          <NavLink className="mx-3" to="/">Home</NavLink>
-          <NavLink to="/cities">Cities</NavLink>
-          <NavbarText className="mx-3">Simple Text</NavbarText>
-          </div>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
+     <Navbar className="p-0 d-flex justify-content-between" color="light" light expand="md">    
+        <NavbarBrand ><img className="logo" src="/assets/logo_mytinerary.png"/>
+        </NavbarBrand>
+        <div className="d-flex ">
+            <NavbarToggler onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar>
+                <NavLink className="mx-3 text-secondary" to="/">Home</NavLink>
+                <NavLink className="me-3 text-secondary" to="/cities">Cities</NavLink>
+                <Nav className="mr-auto " navbar>              
+                    <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav caret>
+                            <img className="logo" src="/assets/logo-usuario.png"/>
+                        </DropdownToggle>
+                        <DropdownMenu right>
+                            <DropdownItem>
+                                Sign in
+                            </DropdownItem>
+                            <DropdownItem>
+                                Sign out
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                </Nav>
+            </Collapse>
+        </div>
+    </Navbar>           
+);
 }
 
 export default Navbaar;
