@@ -25,7 +25,7 @@ const Navbaar= (props) => {
         <div className="d-flex ">
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-                <NavLink className="mx-3 text-secondary" to="/">Home</NavLink>
+                <NavLink className="mx-3 text-secondary" exact to="/">Home</NavLink>
                 <NavLink className="me-3 text-secondary" to="/cities">Cities</NavLink>
                 <Nav className="mr-auto " navbar>              
                     <UncontrolledDropdown nav inNavbar>
