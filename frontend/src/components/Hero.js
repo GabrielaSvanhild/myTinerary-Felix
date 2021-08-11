@@ -12,7 +12,7 @@ const Hero = () => {
                     <h1> MY<span className="tinerary">TINERARY</span> </h1>
                 </div>
                 <div className="contenedor-slogan"> 
-                    <div class="typewriter">
+                    <div className="typewriter">
                         <h4>
                             Find your perfect trip, designed by insiders who know and love their cities!
                         </h4>

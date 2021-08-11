@@ -34,7 +34,7 @@ const Footer = () => {
                </NavLink>
             </div>
          </div>
-         <h4> © MYtinerary Proyect 2021 - All Rights Reserved</h4>
+         <h4> © MYtinerary Project 2021 - All Rights Reserved</h4>
       </footer>
    )
 }

@@ -87,26 +87,23 @@ h1{
     text-decoration: none;
     color: #efeae4;
 }
-.contenedor_llamada_a_la_accion button a:hover{
-    color: #efeae4;
-}
+
 .contenedor_llamada_a_la_accion button{
     margin: 3vmin;
-     width: 22%;
+    width: 22%;
     background: rgba(255, 255, 255, 0.262); 
-    border: none;
     padding: 1vmin;
-    border: 1px solid #efeae4;
     font-size: 4vmin;
     border-radius: 25px;
-    background-image: -webkit-linear-gradient(top, #efeae47c, #7cd4eda7);
-    background-image: -moz-linear-gradient(top, #efeae47c, #7cd4eda7);
-    background-image: -ms-linear-gradient(top, #efeae47c, #7cd4eda7);
-    background-image: -o-linear-gradient(top, #efeae47c, #7cd4eda7);
-    background-image: linear-gradient(to bottom, #efeae47c, #7cd4eda7);
+    border: none;
+    background-image: -webkit-linear-gradient(top, #efeae47c, #b2edfea7);
+    background-image: -moz-linear-gradient(top, #efeae47c, #b2edfea7);
+    background-image: -ms-linear-gradient(top, #efeae47c, #b2edfea7);
+    background-image: -o-linear-gradient(top, #efeae47c, #b2edfea7);
+    background-image: linear-gradient(to bottom, #efeae47c, #b2edfea7);
 }
 .contenedor_llamada_a_la_accion button:hover {
-    background-color: #060707;
+    background-color: #004468;
   }
 
 
@@ -137,8 +134,14 @@ main{
     color: #486972;
     font-family: 'Nixie One', cursive;
 }
+
 .container h3{
     text-align: center;
+    font-size: 6vmin;
+    background: #efeae4;
+    background: linear-gradient(85deg,#486972, #abe1fa);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .contenedor-titulo-carousel{
@@ -148,24 +151,30 @@ main{
     background: linear-gradient(85deg,#cfe5f4,#efeae4);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: content-box;
-    min-width: 50%;
+    min-width: 49%;
     border-radius: 30px;
 }
-.titulo-carousel{
+.titulo-carousel, .titulo-cities{
     text-align: center;
     font-size: 8vmin;
     background: #efeae4;
     background: linear-gradient(85deg,#486972, #abe1fa);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    
-
-  
-}
-.carousel-control-next-icon,.carousel-control-prev-icon {
-
 
 }
+.titulo-cities{
+    font-size: 5vmin;
+}
+.contenedor-buscador-cities{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1vmin;
+    display: grid;
+}
+
 .carousel-control-next, .carousel-control-next, .carousel-control-prev, .carousel-control-prev {
     color: #0c0b09 !important;
     
@@ -183,7 +192,7 @@ main{
     
 }
 #foto_carrousel{
-    min-width: 350px;
+    min-width: 500px;
     min-height:250px;
     background-position: center;
     background-size: cover;
@@ -215,14 +224,37 @@ main{
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.064);   
 }
+/* MAIN CITIES */
+.contenedor-cities{
+    padding: 2rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2,1fr);   
+                                            
+}
+.contenedor-cities div:nth-child(3n-2){
+    grid-column: 1 / span 3;
+} 
 
+
+.foto-cities {
+    border-radius:10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 45vh;
+} 
+.foto-city0{
+    background-position: 0% 70%;
+
+}
 
 /* FOOTER */
 
 
 footer{
     width: 100%;
-    height: 40vh;
+    height: 30vh;
     background-size: cover;
     background-position: 40% 47%;
     display: flex;
@@ -326,6 +358,43 @@ footer h4{
 @media screen and  (min-width:1650px){
     #foto_carrousel{
         min-width: 700px;
-        min-height: 650px;
+        min-height: 400px;
       }
+}
+@media screen and  (max-width:600px){
+   
+    footer{
+        height: 20vh;
+    }
+    #foto_carrousel{
+        min-width: 400px;
+        min-height: 250px;
+      }
+}
+@media screen and  (max-width:450px){
+    #foto_carrousel{
+        min-width: 250px;
+        min-height: 150px;
+      }
+      #foto_carrousel h3{
+          font-size: 1rem;
+      }
+      .container p{
+          font-size: 1rem;
+      }
+
+
+}
+@media only screen and (max-width:700px){
+    .contenedor-cities{
+        display: grid;
+        grid-template-columns: 1fr;
+
+    }
+    
+    .contenedor-cities div:nth-child(3n-2){
+        grid-column: 1;
+        height: 20vh;
+        display: none!important;
+    }
 }

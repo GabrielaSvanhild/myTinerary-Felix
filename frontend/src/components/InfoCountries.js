@@ -4,10 +4,12 @@ const InfoCountries = () => {
         <div className="container">
             <div className="row ">
                 <div className="col-12 col-md-6">
-                    <h3> NORDIC TRAVEL GUIDE</h3>
+                    <div className="contenedor-titulo-info-countries">
+                        <h3> NORDIC TRAVEL GUIDE</h3>
+                    </div>
                     <p>The Nordic countries have stunning landscapes, the northern lights, historic neighbourhoods and
                         modern cities. There’s a lot to love about the Nordic countries of Europe.</p>
-                    <div className="row ">
+                    <div className="row d-flex ">
                         <div className="col-6 caja-columna1-paises">
                             <div className="caja-banderas d-flex">
                                 <img className="align-self-center" src="/assets/denmark_flags.png" />
@@ -38,7 +40,7 @@ const InfoCountries = () => {
                         </div>
                     </div>
                 </div>
-                <div className="d-md-block col-md-6">
+                <div className="d-md-block col-md-6 my-3">
                     <img className="align-self-center img-fluid" src="/assets/mapa.png" />
                 </div>
             </div>

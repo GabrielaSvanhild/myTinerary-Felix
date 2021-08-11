@@ -6,26 +6,10 @@ import {
     CarouselIndicators,
 } from 'reactstrap';
 
-const items = [
+const items = 
+[
     {
-        src:[{ruta:"/assets/oslo.jpg",
-        texto:"Oslo-Norway", 
-    },
-
-    {
-        ruta:"/assets/arendal.jpg",
-        texto:"Arendal-Norway",                    
-    },
-
-    {
-        ruta:"/assets/bergen.jpg",
-        texto:"Bergen-Norway", 
-    },
-
-    {
-        ruta:"/assets/stavanger.jpg",
-        texto:"Stavanger-Norway",
-    }],
+        src:[{ruta:"/assets/oslo.jpg",texto:"Oslo-Norway",},{ruta:"/assets/arendal.jpg",texto:"Arendal-Norway",},{ruta:"/assets/bergen.jpg",texto:"Bergen-Norway", },{ruta:"/assets/stavanger.jpg",texto:"Stavanger-Norway",}],
 
     },
     {
@@ -38,7 +22,7 @@ const items = [
     },
     {
         ruta:"/assets/helsinki.jpeg",
-        texto:"Helsinki-Denmark", 
+        texto:"Helsinki-Finland", 
     },
     {
         ruta:"/assets/rovaniemi.jpeg",
