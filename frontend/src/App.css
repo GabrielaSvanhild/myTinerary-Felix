@@ -96,14 +96,16 @@ h1{
     font-size: 4vmin;
     border-radius: 25px;
     border: none;
-    background-image: -webkit-linear-gradient(top, #efeae47c, #b2edfea7);
-    background-image: -moz-linear-gradient(top, #efeae47c, #b2edfea7);
-    background-image: -ms-linear-gradient(top, #efeae47c, #b2edfea7);
-    background-image: -o-linear-gradient(top, #efeae47c, #b2edfea7);
-    background-image: linear-gradient(to bottom, #efeae47c, #b2edfea7);
+    background-color:#628f9b;
+    background-image: -webkit-linear-gradient(top, #100f0f7c, #2f7e94a7);
+    background-image: -moz-linear-gradient(top, #100f0f7c, #2f7e94a7);
+    background-image: -ms-linear-gradient(top, #100f0f7c, #2f7e94a7);
+    background-image: -o-linear-gradient(top, #100f0f7c, #2f7e94a7);
+    background-image: linear-gradient(to bottom, #100f0f7c, #2f7e94a7); 
 }
 .contenedor_llamada_a_la_accion button:hover {
-    background-color: #004468;
+    background-color: #8181f59e;
+
   }
 
 
@@ -191,6 +193,25 @@ main{
     background-color: #efeae4;
     
 }
+
+
+.foto-cities{
+    display: flex;
+    justify-content: center;
+}
+.foto-cities h3{
+    align-self: flex-end;
+    color: #efeae4;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    background-color: rgba(58, 56, 56, 0.358);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size:3vmin;
+    text-shadow: 1px 1px 2px black;
+}
+
 #foto_carrousel{
     min-width: 500px;
     min-height:250px;
@@ -226,7 +247,7 @@ main{
 }
 /* MAIN CITIES */
 .contenedor-cities{
-    padding: 2rem;
+    padding: 2rem 5rem;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(2,1fr);   
@@ -242,7 +263,7 @@ main{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 45vh;
+    min-height: 35vh;
 } 
 .foto-city0{
     background-position: 0% 70%;
@@ -395,6 +416,37 @@ footer h4{
     .contenedor-cities div:nth-child(3n-2){
         grid-column: 1;
         height: 20vh;
-        display: none!important;
     }
+}
+.foto-cities h3{
+    align-self: flex-end;
+    color: #efeae4;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    background-color: rgba(58, 56, 56, 0.358);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size:4vmin;
+    text-shadow: 1px 1px 2px black;
+}
+.foto-cities h3{
+    transition: .5s;
+}
+
+.foto-cities h3:hover{
+    font-size:4vmin;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.064);   
+}
+.contenedor-buscador-cities{
+    margin-top: 2rem;
+    padding: 1rem;
+}
+input{
+    padding:0.5rem;
+    border:1px solid #66a6c9;
+    border-radius: 5px;
+    text-align: center;
 }
