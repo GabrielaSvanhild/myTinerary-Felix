@@ -2,9 +2,6 @@ import {useState, useEffect} from 'react'
 import{Link} from 'react-router-dom'
 import axios from 'axios'
 
-
-
-
 /* const cities=[
     {ruta:"/assets/oslo.jpg",texto:"Oslo-Norway", id:0},
     {ruta:"/assets/arendal.jpg",texto:"Arendal-Norway",id:1},
@@ -23,15 +20,12 @@ import axios from 'axios'
     {ruta:"/assets/estocolmo.jpg",texto:"Stockholm-Sweden",id:14},  
  ] */
 
-
-
-
 const MainCities = () => {
     const [cities,setCities]=useState([])
     useEffect(()=>{
         axios.get('http://localhost:4000/api/cities')
         .then(response => setCities(response.data.response))
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
@@ -55,11 +49,11 @@ const MainCities = () => {
                 {   
                     cities.map((city,index)=>{
                         return(
-                                city.texto.toUpperCase().startsWith(ciudad_buscada.trim().toUpperCase())&&
-                                <Link to ={`/info-city/${city.id}`}><div className={`foto-cities foto-city${index}`}
-                                style={{backgroundImage:`url("${city.ruta}")`,
-                                }}key={index}>
-                                    <h3 className="texto-fotos-cities">{city.texto}</h3>                           
+                                city.name.toUpperCase().startsWith(ciudad_buscada.trim().toUpperCase())&&
+                                <Link key={index} to ={`/info-city/${city._id}`}><div className={`foto-cities foto-city${index}`}
+                                style={{backgroundImage:`url("${city.src}")`,
+                                }}>
+                                    <h3 className="texto-fotos-cities">{city.name}</h3>                           
                                 </div></Link>  
                         )
 
