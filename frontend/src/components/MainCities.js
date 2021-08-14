@@ -25,7 +25,7 @@ const MainCities = () => {
     useEffect(()=>{
         axios.get('http://localhost:4000/api/cities')
         .then(response => setCities(response.data.response))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
