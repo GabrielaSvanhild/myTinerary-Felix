@@ -246,16 +246,42 @@ main{
     background-color: rgba(0, 0, 0, 0.064);   
 }
 /* MAIN CITIES */
+.contenedor-cities a{
+text-decoration: none;
+}
+.contenedor-buscador-cities{
+    margin-top: 2rem;
+    padding: 1rem;
+}
+.contenedor-buscador-cities h2{
+    font-size: 7vmin;
+}
+
+input{
+    padding:0.5rem;
+    border:1px solid #66a6c9;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .contenedor-cities{
     padding: 2rem 5rem;
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(2,1fr);   
+    grid-template-columns: repeat(2,1fr);  
                                             
 }
-.contenedor-cities div:nth-child(3n-2){
+
+.contenedor-cities a:nth-child(3n-2){
     grid-column: 1 / span 3;
 } 
+.contenedor-cities a:nth-child(3n-1){
+    grid-column: 1 / span 1 ;
+} 
+.contenedor-cities a:nth-child(3n){
+    grid-column: 2 / span 2;
+} 
+
 
 
 .foto-cities {
@@ -265,9 +291,14 @@ main{
     background-size: cover;
     min-height: 35vh;
 } 
+.foto-cities h3 {
+    font-size: 5vmin;
+}
+
+
+
 .foto-city0{
     background-position: 0% 70%;
-
 }
 
 /* FOOTER */
@@ -333,7 +364,13 @@ footer h4{
     height: 100vh;
     background-size: cover;
 }
-
+.contenedor-hero-ciudad{
+    width: 100vw;
+    height: 50vh;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 @media screen and  (min-width:1200px){
    
@@ -412,13 +449,22 @@ footer h4{
         grid-template-columns: 1fr;
 
     }
-    
-    .contenedor-cities div:nth-child(3n-2){
+    .contenedor-cities a:nth-child(3n-2){
         grid-column: 1;
-        height: 20vh;
+       
+    }
+    .contenedor-cities a:nth-child(3n-1){
+        grid-column: 1;
+    } 
+    .contenedor-cities a:nth-child(3n){
+        grid-column: 1;
+    } 
+    .contenedor-cities{
+        padding: 2rem
+                                                
     }
 }
-.foto-cities h3{
+/* .foto-cities h3{
     align-self: flex-end;
     color: #efeae4;
     width: 100%;
@@ -439,14 +485,14 @@ footer h4{
     height: 100%;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.064);   
+} */
+.foto-cities h3{
+    transition: .5s;
 }
-.contenedor-buscador-cities{
-    margin-top: 2rem;
-    padding: 1rem;
-}
-input{
-    padding:0.5rem;
-    border:1px solid #66a6c9;
-    border-radius: 5px;
-    text-align: center;
+
+.foto-cities h3:hover{
+    font-size:4vmin;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.064);   
 }

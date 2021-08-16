@@ -18,11 +18,12 @@ const City =require('../models/City')
     {ruta:"/assets/estocolmo.jpg",texto:"Stockholm-Sweden",id:14},  
  ] */
 
+
  const citiesControllers = {
     obtenerTotalCities: (req, res) => {
         City.find()
         .then(cities=> res.json({response:cities}))
-         /* res.json({ response: cities }) */
+        .catch((error) => res.json({ success: false, response: error }))
     },
     obtenerCity: (req, res) => {
        City.findOne({_id:req.params.id})
@@ -30,14 +31,30 @@ const City =require('../models/City')
     },
     crearNuevaCity:(req,res)=>{
         const nuevaCity = new City({
-            name: req.body.name,
+            src: req.body.src,
+            name:req.body.name,
             country:req.body.country,
-            src:req.body.src,
-            description: req.body.description
+            currency:req.body.currency,
+            language:req.body.language,
+            description:req.body.description,
         })
         nuevaCity.save()
         .then(()=>res.json({ success: true }))
-    }
- }
- 
+        .catch((error) => res.json({ success: false, error: error }))
+    },
+    borrarCity: (req, res) => {
+        // Pedirle al modelo que borre de la city puntual que me esta pidiendo el frontend (a través del id)
+        City.findOneAndDelete({ _id: req.params.id })
+           .then(() => {
+              return res.json({ success: true })
+           })
+           .catch((error) =>res.json({ success: false, response: error.message }))
+     },
+     modificarCity: (req, res) => {
+        // Pedirle al modelo que busque la city en la BD para después modificarlo con los nuevos datos que me están mandando por el body.
+        City.findOneAndUpdate({ _id: req.params.id }, { ...req.body })
+        .then(() => res.json({ success: true }))
+     },
+}
  module.exports = citiesControllers
+ 
