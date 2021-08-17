@@ -4,7 +4,7 @@ const NotFound = () => {
    return(
         <>
             <Header/>
-            <img className="img-fluid" src="/assets/error.png" />
+            <img className="img-fluid" src="/assets/error.png" alt="error" />
         </>
    )
 }

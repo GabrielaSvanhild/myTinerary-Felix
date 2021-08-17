@@ -45,7 +45,6 @@ nav a{
 
 /* HERO */
 
-
 video{
     width: 100%;
     height: 95vh;
@@ -168,6 +167,21 @@ main{
 .titulo-cities{
     font-size: 5vmin;
 }
+.hero-city{
+    width: 100vw;
+    height: 65vh;
+    margin-bottom: 4rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+.hero-city h1{
+    text-shadow: 1px 1px 2px black;
+    color: #efeae4;
+    align-self: flex-end;
+    margin-left: 0.5rem;
+}
 .contenedor-buscador-cities{
     display: flex;
     flex-direction: column;
@@ -265,7 +279,7 @@ input{
 }
 
 .contenedor-cities{
-    padding: 2rem 5rem;
+    padding: 2rem;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(2,1fr);  
@@ -282,25 +296,124 @@ input{
     grid-column: 2 / span 2;
 } 
 
-
-
 .foto-cities {
     border-radius:10px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 35vh;
+    height: 35vh;
 } 
-.foto-cities h3 {
-    font-size: 5vmin;
+.foto-cities h3{
+    font-size: 3.5vmin;
+    height: 15%;
+    background-color: rgba(0, 0, 0, 0.39); 
 }
-
-
+.foto-cities h3{
+    
+    transition: .5s;
+}
+h3:hover{
+    font-size: 5vmin;
+    height: 100% ;
+    background-color: rgba(0, 0, 0, 0.071);   
+}  
 
 .foto-city0{
     background-position: 0% 70%;
 }
 
+.contenedor-hero-ciudad{
+    width: 100vw;
+    height: 60vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display :flex;
+}
+
+.contenedor-hero-ciudad h1{
+    color: #efeae4;
+    width:100%;
+    text-shadow: 1px 1px 2px black;
+    background-color: #00000035;
+    align-self: flex-end;
+}
+
+.hero-Oslo{
+    background-position: bottom;
+}
+
+.hero-Skellefteå{
+    background-position: 50% 80%;
+}
+.boton-regreso-cities{
+    padding: 0.5rem;
+    color: black;
+    border:none;
+    border-radius: 10px;
+    background-color:#6b7ae9;
+}
+.contenedor-ciudad button{
+    transition: .5s;
+}
+.contenedor-ciudad button:hover{
+    background-color: #7280eb9f; 
+    padding: 0.7rem;
+}
+
+.boton-regreso-cities a{
+    text-decoration: none;
+}
+.boton-regreso-cities a p{
+    color: #353333;
+}
+.boton-regreso-cities a p:hover{
+    color:white
+}
+.contenedor-ciudad{
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:  #515863;
+}
+.contenedor-ciudad button{
+    margin-top: 4vmin;
+}
+.foto-cerrado{
+   width: 25vw;
+   margin-bottom: 5vmin;
+}
+
+/* LOADER */
+.contenedor-loading{
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.loading{
+    font-size: 2rem;
+}
+.contenedor-loading img{
+    width: 40vh;
+}
+.cartel-filtro{
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: -2rem;
+
+}
+.cartel-filtro img{
+    width: 25%;
+}
 /* FOOTER */
 
 
@@ -364,13 +477,7 @@ footer h4{
     height: 100vh;
     background-size: cover;
 }
-.contenedor-hero-ciudad{
-    width: 100vw;
-    height: 50vh;
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 
 @media screen and  (min-width:1200px){
    
@@ -486,13 +593,3 @@ footer h4{
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.064);   
 } */
-.foto-cities h3{
-    transition: .5s;
-}
-
-.foto-cities h3:hover{
-    font-size:4vmin;
-    height: 100%;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.064);   
-}

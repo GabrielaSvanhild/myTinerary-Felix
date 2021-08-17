@@ -1,33 +1,24 @@
 const City =require('../models/City')
 
-/* const cities=[
-    {ruta:"/assets/oslo.jpg",texto:"Oslo-Norway", id:0},
-    {ruta:"/assets/arendal.jpg",texto:"Arendal-Norway",id:1},
-    {ruta:"/assets/bergen.jpg",texto:"Bergen-Norway",id:2},
-    {ruta:"/assets/stavanger.jpg",texto:"Stavanger-Norway",id:3},
-    {ruta:"/assets/copenahue.jpeg",texto:"Copenhagen-Denmark",id:4},
-    {ruta:"/assets/Reykjavik.jpeg",texto:"Reykjavik-Iceland",id:5},
-    {ruta:"/assets/Selfoss islandia.jpeg",texto:"Selfoss-Iceland",id:6},
-    {ruta:"/assets/Saariselkä.jpeg",texto:"Saariselkä-Findald",id:7},
-    {ruta:"/assets/Skellefteå.jpg",texto:"Skellefteå-Sweden",id:8},
-    {ruta:"/assets/helsinki.jpeg",texto:"Helsinki-Finland",id:9},
-    {ruta:"/assets/rovaniemi.jpeg",texto:"Rovaniemi-Finland",id:10},
-    {ruta:"/assets/estocolmo.jpg",texto:"Stockholm-Sweden",id:11},
-    {ruta:"/assets/helsinki.jpeg",texto:"Helsinki-Finland",id:12},
-    {ruta:"/assets/rovaniemi.jpeg",texto:"Rovaniemi-Finland",id:13},
-    {ruta:"/assets/estocolmo.jpg",texto:"Stockholm-Sweden",id:14},  
- ] */
-
 
  const citiesControllers = {
     obtenerTotalCities: (req, res) => {
         City.find()
-        .then(cities=> res.json({response:cities}))
-        .catch((error) => res.json({ success: false, response: error }))
+        .then(cities=> res.json({succes:true, response:cities}))
+
+         //si se cae mongo y no lo catcheo te devuelve es una response null
+        .catch((error) => res.json({ success: false, response: error.message }))//si tengo a mongo caido
     },
     obtenerCity: (req, res) => {
        City.findOne({_id:req.params.id})
-       .then(city=> res.json({response:city}))
+      .then(city=> {
+         if(city!=null){
+            res.json({success:true,response:city})
+         }else{
+            res.json({success:false,response:"The city is not found"})
+         }       
+      }) //aca cae cuando el id que pone es valido como no
+       .catch((error)=>  res.json({ success: false, response: error.message }))
     },
     crearNuevaCity:(req,res)=>{
         const nuevaCity = new City({
@@ -40,20 +31,31 @@ const City =require('../models/City')
         })
         nuevaCity.save()
         .then(()=>res.json({ success: true }))
-        .catch((error) => res.json({ success: false, error: error }))
+        .catch((error) => res.json({ success: false, response: error.message}))
     },
     borrarCity: (req, res) => {
         // Pedirle al modelo que borre de la city puntual que me esta pidiendo el frontend (a través del id)
         City.findOneAndDelete({ _id: req.params.id })
-           .then(() => {
-              return res.json({ success: true })
-           })
+           .then((city_delete) => {
+              if(city_delete){
+                  res.json({ success: true })
+              }else{
+                  res.json({success:false,response:"The city is not found"})
+              }
+            })
            .catch((error) =>res.json({ success: false, response: error.message }))
      },
      modificarCity: (req, res) => {
         // Pedirle al modelo que busque la city en la BD para después modificarlo con los nuevos datos que me están mandando por el body.
         City.findOneAndUpdate({ _id: req.params.id }, { ...req.body })
-        .then(() => res.json({ success: true }))
+        .then((city_modified) =>{
+            if(city_modified){
+               res.json({ success: true })
+            }else{
+               res.json({success:false,response:"The city is not found"})
+            }
+         })
+        .catch((error) =>res.json({ success: false, response:error.message }))
      },
 }
  module.exports = citiesControllers

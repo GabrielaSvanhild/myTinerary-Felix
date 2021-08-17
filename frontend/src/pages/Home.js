@@ -3,10 +3,14 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import Main from '../components/Main';
+import {useEffect} from 'react'
 
-export default class Home extends React.Component {
-   render() {
-   
+ const Home= ()=>{
+
+   useEffect(()=>{
+      window.scrollTo(0,0)
+   },[])
+  
       return (
          <>
             <Header/>
@@ -15,5 +19,6 @@ export default class Home extends React.Component {
             <Footer />
          </>
       )
-   }
 }
+
+export default Home;
