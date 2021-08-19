@@ -20,6 +20,9 @@ body{
 .bg-light {
     background-color: #efeae4 !important;
 }
+.btn-primary{
+    background-color: #6b7ae9 !important;
+}
 
 p{
     color: #efeae4;
@@ -133,7 +136,7 @@ main{
 
 .container p{
     color: #486972;
-    font-family: 'Nixie One', cursive;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container h3{
@@ -209,22 +212,7 @@ main{
 }
 
 
-.foto-cities{
-    display: flex;
-    justify-content: center;
-}
-.foto-cities h3{
-    align-self: flex-end;
-    color: #efeae4;
-    width: 100%;
-    height: 15%;
-    text-align: center;
-    background-color: rgba(58, 56, 56, 0.358);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    font-size:3vmin;
-    text-shadow: 1px 1px 2px black;
-}
+
 
 #foto_carrousel{
     min-width: 500px;
@@ -295,24 +283,33 @@ input{
 .contenedor-cities a:nth-child(3n){
     grid-column: 2 / span 2;
 } 
-
-.foto-cities {
-    border-radius:10px;
+.foto-cities{
+    display: flex;
+    justify-content: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 35vh;
+    height: 38vh;
 } 
 .foto-cities h3{
+    align-self: flex-end;
+    color: #efeae4;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    background-color: rgba(58, 56, 56, 0.358);
+    font-size:3vmin;
+    text-shadow: 1px 1px 2px black;
     font-size: 3.5vmin;
     height: 15%;
     background-color: rgba(0, 0, 0, 0.39); 
 }
+
 .foto-cities h3{
-    
-    transition: .5s;
+transition: .5s;
 }
-h3:hover{
+
+.foto-cities h3:hover{
     font-size: 5vmin;
     height: 100% ;
     background-color: rgba(0, 0, 0, 0.071);   
@@ -357,8 +354,8 @@ h3:hover{
     transition: .5s;
 }
 .contenedor-ciudad button:hover{
-    background-color: #7280eb9f; 
-    padding: 0.7rem;
+    background-color: #344af0; 
+    padding: 0.5rem 0.7rem;
 }
 
 .boton-regreso-cities a{
@@ -414,6 +411,37 @@ h3:hover{
 .cartel-filtro img{
     width: 25%;
 }
+
+
+/* ITINERARIOS */
+.foto-itinerario-oslo{
+    
+} 
+.cardItinerary{
+    margin:2rem 3rem;
+    border: 2px solid #6b7ae9;
+    border-radius: 10px;
+    padding: 1rem 1.5rem; 
+    position: relative;
+    background-color: #ffffff;
+}
+
+.cardItinerary::after{
+    position: absolute;
+    top: 0px;
+    left:0px;
+    content: ' ';
+    background-image: linear-gradient(to right, rgb(148, 157, 156), rgb(95, 98, 104), rgb(58, 58, 70));;
+    width: 100%;
+    height: 100%;
+   filter: blur(10px);
+   z-index: -1;
+}
+.foto-perfil{
+    width: 8vw;
+}
+
+
 /* FOOTER */
 
 
@@ -571,6 +599,11 @@ footer h4{
                                                 
     }
 }
+p,h4,h5,h6{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
 /* .foto-cities h3{
     align-self: flex-end;
     color: #efeae4;

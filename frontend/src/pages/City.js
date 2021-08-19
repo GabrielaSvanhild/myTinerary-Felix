@@ -4,11 +4,13 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert';
-import HeroCities from '../components/HeroCities';
+import Itinerary from'../components/Itinerary'
 
 
 const City = (props) => {
     const [city,setCity]=useState({})
+    const [itineraries,setItineraries]=useState([])
+
     const[loading,setLoading]=useState(true)
 
 
@@ -17,7 +19,7 @@ const City = (props) => {
         axios.get(`http://localhost:4000/api/city/${props.match.params.id}`)
         .then(response => {
             if(response.data.success){
-                setCity(response.data.response) 
+                setCity(response.data.response)
             }else{
                 swal("Error","Sorry the city is not found" ,"error")
                 props.history.push("/cities")
@@ -29,6 +31,12 @@ const City = (props) => {
             props.history.push("/cities")
          })
          .finally(()=>setLoading(false))
+        axios.get('http://localhost:4000/api/itineraries')
+        .then(response=> {
+            setItineraries(response.data.response)
+            console.log(response.data.response)
+        })
+        .catch((error)=>console.log(error))
         //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -51,11 +59,15 @@ const City = (props) => {
             <div className={`contenedor-hero-ciudad hero-${city.name}`} style={{backgroundImage:`url("${city.src}")`}}> 
                 <h1>Welcome to {city.name}</h1>
             </div>
+            {
+                itineraries.map(itinerary=>{
+                    return <Itinerary itinerary={itinerary}/>
+                })
+            }
             <div className="contenedor-ciudad">
-                <img className="foto-cerrado" src="/assets/closed-1.png" alt="closed"/>
-               <h3>Page under construction</h3>
                 <button className="boton-regreso-cities"> <Link to="/cities"><p>BACK TO CITIES!</p></Link> </button>  
             </div>
+            
             <Footer/> 
         </>
     )
