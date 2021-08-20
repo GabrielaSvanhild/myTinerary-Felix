@@ -7,13 +7,103 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import FilterNotFound from '../components/FilterNotFound';
 import HeroCities from '../components/HeroCities';
+import { connect } from 'react-redux';
+import citiesActions from '../redux/actions/citiesActions'
 
 const Cities = (props) => {
+  const{filteredCities}=props// destructuro cities de props.cities 
+                    //para poder usar solo cities
+   useEffect(()=>{
+        props.getCities()
+   },[])
+   /* const filter_cities=(e)=>{
+        const input_entered = e.target.value
+        setCities({
+            ...cities,
+            cities_filtered:cities.all_cities.filter((city)=>{
+                return(
+                    city.name.toUpperCase().trim().startsWith(input_entered.trim().toUpperCase())
+                )
+            })    
+        })
+    } */
+ const inputHandler=(e)=>{
+  
+     props.filterCities(e.target.value)
+ }
+
+   return(
+    <>
+          <Header/>
+          <HeroCities/>
+          <div className="contenedor-buscador-cities">
+              <h2 className="titulo-cities">Find Your Adventure</h2>
+              <input type="text" placeholder="Search by destination" onChange={inputHandler}/>
+          </div>
+          <div className='contenedor-cities'>
+              {   
+                   filteredCities.map((city,index)=>{
+                      return(
+                          <Link key={index} to ={`/info-city/${city._id}`}><div className={`foto-cities foto-city${index}`}
+                          style={{backgroundImage:`url("${city.src}")`,
+                          }}>
+                              <h3 className="texto-fotos-cities">{city.name}</h3>                           
+                          </div></Link>  
+                      )
+                  }) 
+              }            
+          </div> 
+          <Footer />
+    </>
+)
+
+}
+
+
+
+
+
+
+const mapDispatchToProps = {
+    getCities: citiesActions.getAllCities,
+    filterCities:citiesActions.filterCities
+ }
+ const mapStateToProps = (state)=>{
+     return{ //retorna un objeto por eso llaves
+        filteredCities: state.cities.filtered_cities
+     }
+ }
+ 
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cities)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* 
+  const Cities = (props) => {
    const [cities, setCities] = useState({
       all_cities: [],
       cities_filtered:[]
    }) 
   const[loading,setLoading]=useState(true)
+  
   useEffect(()=>{
          window.scrollTo(0,0)
         axios.get('http://localhost:4000/api/cities')
@@ -88,8 +178,8 @@ const Cities = (props) => {
             <Footer />
       </>
   )
-}
-export default Cities
+} */
+
 
 
 
