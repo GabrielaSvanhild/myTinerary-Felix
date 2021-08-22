@@ -10,7 +10,8 @@ const itinerarySchema = new mongoose.Schema({
     hashtag:{type: Array , required:true},
     comments:{type: Array},
     likes:{type:Number, default:0},
-    description:{type:String}   
+    description:{type:String},
+    cityId:{type:mongoose.Types.ObjectId,ref:'city',required:true}   
 })
 
 

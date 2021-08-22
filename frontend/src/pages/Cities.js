@@ -11,26 +11,37 @@ import { connect } from 'react-redux';
 import citiesActions from '../redux/actions/citiesActions'
 
 const Cities = (props) => {
-  const{filteredCities}=props// destructuro cities de props.cities 
+    const[loading,setLoading]=useState(true)
+    const{filteredCities}=props// destructuro cities de props.cities 
                     //para poder usar solo cities
-   useEffect(()=>{
+    useEffect(()=>{
+        window.scrollTo(0,0)
         props.getCities()
-   },[])
-   /* const filter_cities=(e)=>{
-        const input_entered = e.target.value
-        setCities({
-            ...cities,
-            cities_filtered:cities.all_cities.filter((city)=>{
-                return(
-                    city.name.toUpperCase().trim().startsWith(input_entered.trim().toUpperCase())
-                )
-            })    
+        .then((res)=>{
+            if(res && res.error){
+                swal("Error","Sorry the cities is not found" ,"error")
+                props.history.push("/")
+            }else{
+                setLoading(false)
+            }
         })
-    } */
- const inputHandler=(e)=>{
-  
-     props.filterCities(e.target.value)
- }
+        .catch(error=>props.history.push("/notFound"))
+    },[])
+    const inputHandler=(e)=>{
+    props.filterCities(e.target.value)
+    }
+    if(loading){
+        return(
+            <>
+                <div className="contenedor-loading">
+                    <h2 className="loading">
+                        Loading...
+                    </h2>
+                    <img src="/assets/icon_boat.gif" alt="gif"/>
+                </div> 
+            </>       
+        )
+    }
 
    return(
     <>

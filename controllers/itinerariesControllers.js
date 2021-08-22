@@ -3,7 +3,7 @@ const Itinerary = require('../models/Itinerary')
 const itinerariesControllers={
     getAllItineraries: (req,res)=>{
         Itinerary.find()
-        .then(itineraries=> res.json({succes:true, response:itineraries}))
+        .then(itineraries=> res.json({success:true, response:itineraries}))
         .catch((error) => res.json({ success: false, response: error.message }))
     },
 
@@ -25,5 +25,39 @@ const itinerariesControllers={
         })
         .catch((error)=>res.json({succes:false,response:error.message}))
     },
+    getAnItinerary:(req,res)=>{
+        Itinerary.findOne({_id:req.params.id})
+        .then(itinerary=>{
+            if(itinerary!=null){
+                res.json({success:true,response:itinerary})
+            }else{
+                res.json({success:false,response:"The itinerary is not found"})
+            }
+        }) 
+        .catch((error)=>{res.json({success:false,response:error.message})})
+    },
+    editItinerary:(req,res)=>{
+        Itinerary.findOneAndUpdate({_id:req.params.id},{...req.body})
+        .then((itinerary_modified)=>{
+            if(itinerary_modified){
+                res.json({ success: true })
+            }else{
+                res.json({success:false,response:"The itinerary is not found"})
+            }   
+        })
+        .catch((error)=>res.json({success:false,response:error.message}))
+    },
+    getItinerariesOfCity:(req,res)=>{
+        Itinerary.find({cityId:req.params.id})
+        .then(itineraries=>{
+            /* if(!itineraries.length) */
+            if(itineraries!=null){
+                res.json({success:true,response:itineraries})
+            }else{
+                res.json({success:false,response:"The city's itineraries are not found"})
+            }
+        }) 
+        .catch((error)=>{res.json({success:false,response:error.message})}) 
+    }
 }
 module.exports = itinerariesControllers

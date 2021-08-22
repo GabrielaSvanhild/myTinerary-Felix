@@ -4,8 +4,7 @@ const City =require('../models/City')
  const citiesControllers = {
     obtenerTotalCities: (req, res) => {
         City.find()
-        .then(cities=> res.json({succes:true, response:cities}))
-
+        .then(cities=> res.json({success:true, response:cities}))
          //si se cae mongo y no lo catcheo te devuelve es una response null
         .catch((error) => res.json({ success: false, response: error.message }))//si tengo a mongo caido
     },

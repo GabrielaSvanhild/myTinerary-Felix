@@ -5,16 +5,88 @@ import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert';
 import Itinerary from'../components/Itinerary'
+import { connect } from 'react-redux';
+import itinerariesActions from '../redux/actions/itinerariesActions'
+import citiesActions from '../redux/actions/citiesActions'
 
 
 const City = (props) => {
     const [city,setCity]=useState({})
-    const [itineraries,setItineraries]=useState([])
-
-    const[loading,setLoading]=useState(true)
+    const {getItineraries}=props
+   
+    
 
 
     useEffect(()=>{
+        window.scrollTo(0,0)
+        
+         if(props.cities.length==0){
+            console.log('hola')
+            props.history.push('/cities')
+            return false
+
+        }
+            setCity(props.cities.find(city=> city._id==props.match.params.id))
+            /* const city = props.cities.find(city=> city._id==props.match.params.id) */
+
+           /*  getItineraries()
+            .then((res)=>{
+                if(res && res.error){
+                    swal("Error","Sorry the city is not found" ,"error")
+                    props.history.push("/cities")
+                }
+            }).catch(error=>props.history.push("/notFound"))
+         */
+        props.getItinerariesOfCity(props.match.params.id)
+        .then((res)=>{
+            if(res && res.error){
+                swal("Error","Sorry the itineraries are not found" ,"error")
+                props.history.push("/cities")
+            }
+        }).catch(error=>props.history.push("/notFound"))
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
+   
+
+    return(
+        <>
+            <Header/>
+            <div className={`contenedor-hero-ciudad hero-${city.name}`} style={{backgroundImage:`url("${city.src}")`}}> 
+                <h1>Welcome to {city.name}</h1>
+            </div>
+            {
+                props.itineraries.length>0
+                ?props.itineraries.map(itinerary=> <Itinerary itinerary={itinerary}/>)
+                :<h4>No hay nada</h4>
+
+            }
+            <div className="contenedor-ciudad">
+                <button className="boton-regreso-cities"> <Link to="/cities"><p>BACK TO CITIES!</p></Link> </button>  
+            </div>
+            
+            <Footer/> 
+        </>
+    )
+}
+
+const mapStateToProps = (state)=>{
+    return{ //retorna un objeto por eso llaves
+       itineraries: state.itineraries.itineraries_city,
+       cities: state.cities.total_cities
+    }
+}
+
+const mapDispatchToProps = {
+    getItineraries:itinerariesActions.getAllItineraries,
+    getItinerariesOfCity:itinerariesActions.getItinerariesOfOneCity
+ }
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(City)
+
+
+    /* useEffect(()=>{
         window.scrollTo(0,0)
         axios.get(`http://localhost:4000/api/city/${props.match.params.id}`)
         .then(response => {
@@ -70,7 +142,4 @@ const City = (props) => {
             
             <Footer/> 
         </>
-    )
-}
-export default City
-
+    ) */

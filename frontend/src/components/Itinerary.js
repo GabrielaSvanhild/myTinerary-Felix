@@ -17,7 +17,7 @@ const Itinerary =(props)=>{
      
         <div className="cardItinerary my-5">
                 <div className="d-flex ">
-                    <img className="img-fluid " src={itinerary.photo_itinerary}/>
+                    <img className=" " src={itinerary.photo_itinerary}/>
                 <div>
                     <div className="d-flex align-items-center ms-3">
                         <img className="foto-perfil img-fluid "src={itinerary.photo_author}/>
