@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {useState, useEffect} from 'react'
 import{Link} from 'react-router-dom'
-import axios from 'axios'
 import swal from 'sweetalert';
 import FilterNotFound from '../components/FilterNotFound';
 import HeroCities from '../components/HeroCities';
@@ -19,13 +18,13 @@ const Cities = (props) => {
         props.getCities()
         .then((res)=>{
             if(res && res.error){
-                swal("Error","Sorry the cities is not found" ,"error")
+                swal("Error","Sorry the cities are not found" ,"error")
                 props.history.push("/")
             }else{
                 setLoading(false)
             }
         })
-        .catch(error=>props.history.push("/notFound"))
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     const inputHandler=(e)=>{
     props.filterCities(e.target.value)
@@ -45,15 +44,27 @@ const Cities = (props) => {
 
    return(
     <>
-          <Header/>
-          <HeroCities/>
-          <div className="contenedor-buscador-cities">
-              <h2 className="titulo-cities">Find Your Adventure</h2>
-              <input type="text" placeholder="Search by destination" onChange={inputHandler}/>
-          </div>
-          <div className='contenedor-cities'>
-              {   
-                   filteredCities.map((city,index)=>{
+            <Header/>
+            <HeroCities/>
+            <div className="contenedor-buscador-cities">
+                <h2 className="titulo-cities">Find Your Adventure</h2>
+                <input type="text" placeholder="Search by destination" onChange={inputHandler}/>
+            </div>
+            <div className='contenedor-cities'>
+                {   
+                   filteredCities.length===0 
+                   ?<FilterNotFound/>       
+                   :filteredCities.map((city,index)=>{
+                       return(
+                           <Link key={index} to ={`/info-city/${city._id}`}><div className={`foto-cities foto-city${index}`}
+                           style={{backgroundImage:`url("${city.src}")`,
+                           }}>
+                               <h3 className="texto-fotos-cities">{city.name}</h3>                           
+                           </div></Link>  
+                       )
+                   }) 
+
+                   /* filteredCities.map((city,index)=>{
                       return(
                           <Link key={index} to ={`/info-city/${city._id}`}><div className={`foto-cities foto-city${index}`}
                           style={{backgroundImage:`url("${city.src}")`,
@@ -61,19 +72,14 @@ const Cities = (props) => {
                               <h3 className="texto-fotos-cities">{city.name}</h3>                           
                           </div></Link>  
                       )
-                  }) 
-              }            
+                  })  */
+                }            
           </div> 
           <Footer />
     </>
 )
 
 }
-
-
-
-
-
 
 const mapDispatchToProps = {
     getCities: citiesActions.getAllCities,
@@ -85,8 +91,6 @@ const mapDispatchToProps = {
      }
  }
  
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Cities)
 
 

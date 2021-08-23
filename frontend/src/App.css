@@ -171,7 +171,7 @@ main{
     font-size: 5vmin;
 }
 .hero-city{
-    width: 100vw;
+    width: 100%;
     height: 65vh;
     margin-bottom: 4rem;
     background-position: center;
@@ -320,7 +320,7 @@ transition: .5s;
 }
 
 .contenedor-hero-ciudad{
-    width: 100vw;
+    width: 100%;
     height: 60vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -375,7 +375,7 @@ transition: .5s;
     color:  #515863;
 }
 .contenedor-ciudad button{
-    margin-top: 4vmin;
+    margin-top: 2vmin;
 }
 .foto-cerrado{
    width: 25vw;
@@ -399,24 +399,23 @@ transition: .5s;
     width: 40vh;
 }
 .cartel-filtro{
-    width: 100vw;
+    width: 100%;
     height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: -2rem;
+    grid-column: 1 / span 3
 
 }
 .cartel-filtro img{
-    width: 25%;
+    margin-top: 3vmin;
+    width: 30vw;
 }
 
 
 /* ITINERARIOS */
-.foto-itinerario-oslo{
-    
-} 
+
 .cardItinerary{
     margin:2rem 3rem;
     border: 2px solid #6b7ae9;
@@ -440,7 +439,41 @@ transition: .5s;
 .foto-perfil{
     width: 8vw;
 }
-
+.container-itinerary{
+    display: flex;
+}
+.foto-itinerary{
+    min-width: 40vw;
+    background-size: cover;
+    background-position: center;
+}
+.boton-itinerios-view{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor-titulo-descripcion{
+    display: flex;
+    flex-direction: column;
+}
+.titulo-itinerario{
+    align-self: center;
+    background-color:  #6cbed098;
+    border-radius: 10px;
+    padding:0.5rem;
+}
+.billetes,.reloj{
+    font-size: 5vmin;
+}
+.horas, .price, .corazon{
+    font-size: 3vmin;
+}
+.hashtag{
+    display: flex;
+    gap:0.3rem
+}
 
 /* FOOTER */
 
@@ -554,6 +587,15 @@ footer h4{
         min-height: 400px;
       }
 }
+@media only screen and (max-width:1100px){
+    .foto-perfil{
+    width: 15vw;
+    }
+    .hashtag{
+        display: flex;
+        flex-direction: column;
+    }
+}
 @media screen and  (max-width:600px){
    
     footer{
@@ -563,6 +605,24 @@ footer h4{
         min-width: 400px;
         min-height: 250px;
       }
+    
+}
+@media screen and (max-width:670px){
+    .container-itinerary{
+        display: flex;
+    }
+    .foto-itinerary{
+        display: none; 
+    }
+    .foto-perfil{
+        width: 20vw;
+    }
+    .billetes,.reloj{
+        font-size: 2rem;
+    }
+    .horas, .price, .corazon{
+        font-size: 5vmin;
+    }
 }
 @media screen and  (max-width:450px){
     #foto_carrousel{
@@ -575,6 +635,7 @@ footer h4{
       .container p{
           font-size: 1rem;
       }
+    
 
 
 }
@@ -602,6 +663,17 @@ footer h4{
 p,h4,h5,h6{
     font-family: 'Open Sans', sans-serif;
 }
+
+@media screen and  (max-width:1160px){
+    .billetes,.reloj{
+        font-size: 2.5vmin;
+    }
+    .cartel-filtro img{
+        margin-top: 3vmin;
+        width: 43vw;
+    }
+}
+
 
 
 /* .foto-cities h3{

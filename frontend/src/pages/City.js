@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import axios from 'axios'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
@@ -8,46 +7,43 @@ import Itinerary from'../components/Itinerary'
 import { connect } from 'react-redux';
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import citiesActions from '../redux/actions/citiesActions'
+import NoItineraries from '../components/NoItineraries';
 
 
 const City = (props) => {
     const [city,setCity]=useState({})
-    const {getItineraries}=props
-   
-    
-
+    const[loading,setLoading]=useState(true)
 
     useEffect(()=>{
         window.scrollTo(0,0)
-        
-         if(props.cities.length==0){
-            console.log('hola')
+         if(props.cities.length===0){
             props.history.push('/cities')
             return false
-
         }
-            setCity(props.cities.find(city=> city._id==props.match.params.id))
-            /* const city = props.cities.find(city=> city._id==props.match.params.id) */
-
-           /*  getItineraries()
-            .then((res)=>{
-                if(res && res.error){
-                    swal("Error","Sorry the city is not found" ,"error")
-                    props.history.push("/cities")
-                }
-            }).catch(error=>props.history.push("/notFound"))
-         */
+        setCity(props.cities.find(city=> city._id===props.match.params.id))
         props.getItinerariesOfCity(props.match.params.id)
         .then((res)=>{
             if(res && res.error){
                 swal("Error","Sorry the itineraries are not found" ,"error")
                 props.history.push("/cities")
+            }else{
+                setLoading(false)
             }
-        }).catch(error=>props.history.push("/notFound"))
+        })
         //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-
-   
+    if(loading){
+        return(
+            <>
+                <div className="contenedor-loading">
+                    <h2 className="loading">
+                        Loading...
+                    </h2>
+                    <img src="/assets/icon_boat.gif" alt="gif"/>
+                </div> 
+            </>       
+        )
+    }    
 
     return(
         <>
@@ -57,8 +53,8 @@ const City = (props) => {
             </div>
             {
                 props.itineraries.length>0
-                ?props.itineraries.map(itinerary=> <Itinerary itinerary={itinerary}/>)
-                :<h4>No hay nada</h4>
+                ?props.itineraries.map((itinerary,index)=> <Itinerary  key={index} itinerary={itinerary}/>)
+                :<NoItineraries/>
 
             }
             <div className="contenedor-ciudad">
@@ -71,7 +67,7 @@ const City = (props) => {
 }
 
 const mapStateToProps = (state)=>{
-    return{ //retorna un objeto por eso llaves
+    return{ 
        itineraries: state.itineraries.itineraries_city,
        cities: state.cities.total_cities
     }
@@ -84,6 +80,33 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(City)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /* useEffect(()=>{
