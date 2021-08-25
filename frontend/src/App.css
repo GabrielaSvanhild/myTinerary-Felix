@@ -8,6 +8,15 @@ html * {
 body{
     background-color: #efeae4;
 }
+#root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+    
+main{
+    flex-grow: 1;
+}
 
 
 /* HEADER */
@@ -28,6 +37,9 @@ p{
     color: #efeae4;
     font-size: 3vmin;
     margin: 5px 10px;
+}
+.navbar{
+    padding-right:3rem!important
 }
 nav a{
     text-decoration: none;
@@ -475,6 +487,54 @@ transition: .5s;
     gap:0.3rem
 }
 
+
+/* SIGN UP */
+.main-form{
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+.contenedor-form{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    margin: auto 0
+}
+.form-signIn{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color:rgba(255, 255, 255, 0.296);
+    width: 60%;
+    border-radius: 10px;
+}
+.form-signIn *{
+    align-self: center;
+    padding:0.5rem;
+    border:none;
+    border-bottom:1px solid #030709;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    background-color:transparent; 
+    outline: none;
+}
+.form-signIn h2{
+    border: none
+}
+.form-signIn h2{
+    border: none
+}
+.form-signIn button{
+    border: none;
+    background-color: #344af0;
+}
+.form-signIn select{
+    color: #424346
+}
+.title-form{
+    text-align: center;
+}
+
 /* FOOTER */
 
 
@@ -538,7 +598,6 @@ footer h4{
     height: 100vh;
     background-size: cover;
 }
-
 
 @media screen and  (min-width:1200px){
    

@@ -1,6 +1,8 @@
 import Home from './pages/Home'
 import Cities from './pages/Cities'
 import City from './pages/City'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -16,6 +18,8 @@ const App = () => {
             <Route path='/cities' component={Cities} />
             <Route path='/notFound' component={NotFound}/>
             <Route path='/info-city/:id' component={City}/> 
+            <Route path='/sign_in' component={SignIn}/>
+            <Route path='/sign_up' component={SignUp}/>  
             <Redirect to="/notFound"/>
          </Switch>
       </BrowserRouter>

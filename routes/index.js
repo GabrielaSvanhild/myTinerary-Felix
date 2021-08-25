@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const citiesControllers = require('../controllers/citiesControllers')
 const itinerariesControllers= require('../controllers/itinerariesControllers')
-
+const userControllers= require('../controllers/userControllers')
 router
    .route('/cities')
       .get(citiesControllers.obtenerTotalCities)
@@ -24,4 +24,14 @@ router.route('/itinerary/:id')
 
 router.route('/itineraries/:id')
    .get(itinerariesControllers.getItinerariesOfCity)
+
+router.route('/users')
+   .get(userControllers.getUser)
+
+router.route('/user/signup')
+   .post(userControllers.newUser) 
+
+router.route('/user/signin')
+   .post(userControllers.userLogued)
+
 module.exports = router
