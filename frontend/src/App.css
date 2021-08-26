@@ -517,20 +517,20 @@ transition: .5s;
     font-family: 'Open Sans', sans-serif;
     background-color:transparent; 
     outline: none;
+    width: 35%;
 }
 .form-signIn h2{
     border: none
 }
-.form-signIn h2{
-    border: none
-}
+
 .form-signIn button{
     border: none;
     background-color: #344af0;
 }
-.form-signIn select{
-    color: #424346
+.form-signIn select {
+    color: #49494b
 }
+::placeholder { color: #49494b; }
 .title-form{
     text-align: center;
 }

@@ -5,6 +5,8 @@ import Footer from '../components/Footer'
 import { useEffect,useState } from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { connect } from 'react-redux';
+import userActions from '../redux/actions/userActions'
 
 const SignUp = (props) => {
     let field_empty=""
@@ -31,6 +33,7 @@ const SignUp = (props) => {
       })
 
     useEffect(()=>{
+        window.scrollTo(0,0)
         axios.get('https://restcountries.eu/rest/v2/all?fields=name')
         .then((res)=>setCountries(res.data))
         .catch((error)=>console.log(error))
@@ -41,8 +44,7 @@ const SignUp = (props) => {
         setDataUser({...dataUser, [field]:value_input})
     }
     
-    console.log(Object.values(dataUser))
-    const submit=()=>{
+    const submit= ()=>{
         Object.values(dataUser).forEach((field_value)=>!field_value && (field_empty = true))
         if(field_empty){
             Toast.fire({
@@ -50,29 +52,29 @@ const SignUp = (props) => {
                 title: 'Please fill all the fields'
               })
         }else{
-            axios.post('http://localhost:4000/api/user/signup',dataUser)
+            props.postNewUser(dataUser)
             .then((res)=>{
-                if(!res.data.success){
+                console.log(res)
+                if( res.data && !res.data.success){
                     Toast.fire({
                         icon: 'error',
                         title: res.data.error
-                      })
-                }else{
+                      }) 
+                }else if(res.data && res.data.success){
                     Toast.fire({
                         icon: 'success',
                         title: 'Cool your username was created successfully'
                       })
-                } 
+                }else{//este es el caso en que no tengo comunicacion con el back!
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Sorry we have technical problems'
+                      })
+                }
             })
-            .catch((error)=>{
-                console.log(error.message)
-                Toast.fire({
-                    icon: 'error',
-                    title: "Sorry we have technical problems"
-                  })
-            })  
-        }     
+        } 
     }
+        
     return(
         <>
             <Header/>
@@ -97,4 +99,27 @@ const SignUp = (props) => {
         </>
     )
 }
-export default SignUp
+const mapDispatchToProps = {
+    /* loguin: userActions.login */
+    postNewUser: userActions.signUp,
+   
+ }
+export default connect(null, mapDispatchToProps)(SignUp)
+
+
+
+
+
+/* .then((res)=>{
+                if(res && res.error){
+                    Toast.fire({
+                        icon: 'error',
+                        title: res.error
+                      })
+                }else{
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Cool your username was created successfully'
+                      })
+                }
+            }) */

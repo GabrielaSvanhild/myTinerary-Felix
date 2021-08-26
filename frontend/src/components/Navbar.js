@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import userActions from '../redux/actions/userActions'
 import {
   Collapse,
   Navbar,
@@ -22,6 +24,7 @@ const Navbaar= (props) => {
      <Navbar className="p-0 d-flex justify-content-between" color="light" light expand="md">    
         <NavbarBrand ><img className="logo" src="/assets/logo_mytinerary.png" alt="logo"/>
         </NavbarBrand>
+        
         <div className="d-flex ">
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
@@ -30,14 +33,19 @@ const Navbaar= (props) => {
                 <Nav className="mr-auto " navbar>              
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
-                            <img className="logo" src="/assets/logo-usuario.png" alt="logo"/>
+                           {props.token ? <img className="logo" src={props.src} alt="logo"/> : <img className="logo" src="/assets/logo-usuario.png" alt="logo"/> } 
                         </DropdownToggle>
                         <DropdownMenu right>
                             <DropdownItem>
-                                Sign in
+                                {props.token && <h6> Welcome {props.firstName}!</h6>}
+                                {!props.token && <Link to="/sign_up"><p>Sign up</p></Link>}
                             </DropdownItem>
                             <DropdownItem>
-                                Sign out
+                               {!props.token && <Link to="/sign_in"><p>Sign in</p></Link>}
+
+                            </DropdownItem>
+                            <DropdownItem>
+                                {props.token && <p onClick={() => props.logOut()}>Log out</p>}
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
@@ -47,5 +55,14 @@ const Navbaar= (props) => {
     </Navbar>           
 );
 }
-
-export default Navbaar;
+const mapStateToProps = (state) => {
+    return {
+       token: state.user.token,
+       src: state.user.src,
+       firstName: state.user.firstName
+    }
+ }
+const mapDispatchToProps={
+    logOut: userActions.logOut,
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Navbaar)
