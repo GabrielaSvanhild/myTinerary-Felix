@@ -8,8 +8,11 @@ import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions'
 
+
 const SignUp = (props) => {
+
     let field_empty=""
+    const [errors,setErrors]=useState({})
     const [countries,setCountries]=useState([])
     const [dataUser, setDataUser]=useState({
         firstName:"",
@@ -19,6 +22,7 @@ const SignUp = (props) => {
         src:"",
         country:""
     })
+
 
     const Toast = Swal.mixin({
         toast: true,
@@ -38,6 +42,8 @@ const SignUp = (props) => {
         .then((res)=>setCountries(res.data))
         .catch((error)=>console.log(error))
     },[])
+
+
     const inputHandler=(e)=>{
         const value_input = e.target.value
         const field = e.target.name
@@ -45,17 +51,32 @@ const SignUp = (props) => {
     }
     
     const submit= ()=>{
-        Object.values(dataUser).forEach((field_value)=>!field_value && (field_empty = true))
+         Object.values(dataUser).forEach((field_value)=>!field_value && (field_empty = true))
         if(field_empty){
             Toast.fire({
                 icon: 'error',
                 title: 'Please fill all the fields'
-              })
-        }else{
+              }) 
+        }else{ 
             props.postNewUser(dataUser)
             .then((res)=>{
-                console.log(res)
-                if( res.data && !res.data.success){
+                console.log(res.data)
+                if(res.data && !res.data.success && res.data.errors){
+                    setErrors({})
+                    res.data.errors.map(error=>setErrors(msjError=>{
+                        return{
+                            ...msjError,
+                            [error.path]: error.message,
+                        }
+                    }))
+                    console.log(errors)
+                     /* array.map(obj=>setErrors(msjError=>{
+                        return{
+                            ...msjError,
+                [obj.nombre]: obj.cualidad,
+             }
+           }))  */
+                }else if( res.data && !res.data.success){
                     Toast.fire({
                         icon: 'error',
                         title: res.data.error
@@ -72,7 +93,7 @@ const SignUp = (props) => {
                       })
                 }
             })
-        } 
+        }  
     }
         
     return(
@@ -83,10 +104,15 @@ const SignUp = (props) => {
                     <div className="form-signIn">
                         <h2 className="title-form">Create an Account!</h2>
                         <input type="text" name="firstName" id="firstName" placeholder="FirstName" onChange={inputHandler} />
+                        <p>{errors.firstName}</p>
                         <input type="text" name="lastName" id="lastName" placeholder="LastName" onChange={inputHandler}/>
-                        <input type="email" name="email" id="email" pattern=".+@.\.com" size="30" placeholder="E-mail" onChange={inputHandler}/> 
+                        <p>{errors.lastName}</p>
+                        <input type="email" name="email" id="email"  placeholder="E-mail" onChange={inputHandler}/>
+                        <p>{errors.email}</p> 
                         <input type="password" name="password" id="password" placeholder="Password" onChange={inputHandler}/>
+                        <p>{errors.password}</p> 
                         <input type="url" name="src" id="src" placeholder="Url of your picture" onChange={inputHandler}/>
+                        <p>{errors.url}</p> 
                         <select name="country" onChange={inputHandler} >
                         <option className="option-country">Country</option>
                         {countries.map((country)=><option key={country.name} value={country.name}>{country.name}</option>)}
@@ -123,3 +149,26 @@ export default connect(null, mapDispatchToProps)(SignUp)
                       })
                 }
             }) */
+            /*  const [pepe,setpepe]=useState({})
+    array.map(objeto=>{
+        setpepe(prevState=>{
+            return{
+                ...prevState,
+                [objeto.nombre]:objeto.cualidad,
+            }
+        }) 
+        
+    })
+
+   
+   /*  setpepe(array.map(objeto=>{
+        return{
+            [objeto.nombre]:objeto.cualidad,
+        }
+    })) */
+    /* nuevo=array.map(objeto=>{
+        return{
+            [objeto.nombre]:objeto.cualidad,
+        }
+    }) */
+    /* setpepe(nuevo) */

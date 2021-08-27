@@ -10,22 +10,25 @@ import { connect } from 'react-redux';
 import citiesActions from '../redux/actions/citiesActions'
 
 const Cities = (props) => {
+    console.log(props)
     const[loading,setLoading]=useState(true)
     const{filteredCities}=props// destructuro cities de props.cities 
                     //para poder usar solo cities
     useEffect(()=>{
         window.scrollTo(0,0)
-        props.getCities()
+        props.getCities(props.token)
         .then((res)=>{
             if(res && res.error){
                 swal("Error","Sorry the cities are not found" ,"error")
-                props.history.push("/")
+                /* props.history.push("/") */
+                setLoading(false)
             }else{
+                
                 setLoading(false)
             }
         })
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[props.token])
     const inputHandler=(e)=>{
     props.filterCities(e.target.value)
     }
@@ -87,7 +90,8 @@ const mapDispatchToProps = {
  }
  const mapStateToProps = (state)=>{
      return{ //retorna un objeto por eso llaves
-        filteredCities: state.cities.filtered_cities
+        filteredCities: state.cities.filtered_cities,
+        token: state.user.token,
      }
  }
  
