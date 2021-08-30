@@ -69,12 +69,25 @@ const SignIn = (props) => {
             password:response.profileObj.googleId,
             flagGoogle: true,
         }
-        let res = await props.logUser(userGoogle)
-        if(res.data.success){
-            alert("joyaa")
-        }else{
-            alert("algo salio mal")
-        }
+         props.logUser(userGoogle)
+         .then((res)=>{
+            if(res.data && !res.data.success){
+                Toast.fire({
+                    icon: 'error',
+                    title: res.data.error
+                })
+            }else if(res.data && res.data.success){
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Welcome Back!'
+                })
+            }else{
+                Toast.fire({
+                    icon: 'error',
+                    title: "Sorry we have technical problems, come back soon!"
+                })
+            }
+        })
     }
 
     return(
@@ -87,6 +100,7 @@ const SignIn = (props) => {
                         <input type="email" name="email" onChange={inputHandler} placeholder="E-mail"/> 
                         <input type="password" name="password" onChange={inputHandler} placeholder="Password"/>
                         <button onClick={submit} className="boton-send btn btn-primary my-2" >SEND</button>
+                        <h4>OR</h4>
                         <GoogleLogin
                             clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
                             buttonText="Sign Up with Google"

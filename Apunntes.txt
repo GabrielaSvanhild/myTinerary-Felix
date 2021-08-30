@@ -17,7 +17,7 @@ secretOrKey:process.env.SECRETKEY//la llave para abrir la caja secreta
         if(!res){
            return done(null,false)// no hay error por eso NULL no encuentra el usuario 
         }else{
-            return(null,true)//encuentra el usuario
+            return done(null,true)//encuentra el usuario
         }
     })
     .catch(error=> done(error,false))//hay error y false porque no encontro al usuario
@@ -25,6 +25,7 @@ secretOrKey:process.env.SECRETKEY//la llave para abrir la caja secreta
 
 
 //payload es lo que encontro dentro de token
+
 //done es una funcion para decirle que termine al prox controlador y le pasa los resultados
 
 Index js
@@ -35,7 +36,9 @@ Index js
       ) */
       /* EN EL FRONT CUANDO LE PEGUE,TENGO QUE PEDIR AL REDUX EL TOKEN
       console.log
+
       .get('ruta'),{ headers:{Authorization: 'Bearer' + props.token}} 
+      
       EN LOS CONTRALADORES DE INFO PRIVADA, EN EL REQ.USER TE DEVUELVE EL OBJETO CON TODAS LAS PROPS
       PUEDO HACER OTRO MIDDLE WARE PARA VER SI EL USER ES ADMIN 
       isAdmin(req,res,next)

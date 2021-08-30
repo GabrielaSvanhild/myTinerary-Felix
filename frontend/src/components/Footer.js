@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import userActions from '../redux/actions/userActions'
 
 
-const Footer = () => {
+const Footer = (props) => {
    return (
       <footer>
             <div className="contenedor-principal-footer">
@@ -10,7 +12,7 @@ const Footer = () => {
                      <h4>Ready to enjoy?</h4>
                      <h5> Let's get started!</h5>
                   </div>
-                  <Link to="/sign_up">
+                  <Link to="/cities">
                   <button  className=" boton-footer btn btn-primary my-2" type="button" data-bs-toggle="collapse"    >
                         Get Started
                     </button>
@@ -23,9 +25,7 @@ const Footer = () => {
                      <h1> MY<span className="tinerary">TINERARY</span> </h1>
                   </div>
                   <div>
-                     <h6>
-                        Explore
-                     </h6>
+            
                         <div className="nav-footer">
                            <Link to='/'>
                               <p>HOME</p>
@@ -33,12 +33,9 @@ const Footer = () => {
                            <Link to='/cities'>
                               <p>CITIES</p>
                            </Link>
-                           <Link to='/sign_up'>
-                              <p>SIGN UP</p>
-                           </Link>
-                        <Link to='/sign_in'>
-                           <p>SIGN IN</p>
-                        </Link>
+                           {!props.token && <Link to="/sign_up"><p>SIGN UP</p></Link>}
+                           {!props.token && <Link to="/sign_in"><p>SIGN IN</p></Link>}
+                           {props.token && <p onClick={() => props.logOut()}>LOG OUT</p>}
                      </div>
                   </div>
                   <div className="contenedor-contacto">
@@ -70,7 +67,18 @@ const Footer = () => {
       </footer>
    )
 }
-export default Footer
+const mapStateToProps = (state) => {
+   return {
+      token: state.user.token,
+      src: state.user.src,
+      firstName: state.user.firstName
+   }
+}
+const mapDispatchToProps={
+   logOut: userActions.logOut,
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Footer)
+
 
 {/* <footer
 style={{

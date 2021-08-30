@@ -7,8 +7,7 @@ const passport = require('passport')
 const validator = require('../controllers/validator')
 
 
-router
-   .route('/cities')
+router.route('/cities')
       .get(citiesControllers.obtenerTotalCities)
       .post(citiesControllers.crearNuevaCity)
       

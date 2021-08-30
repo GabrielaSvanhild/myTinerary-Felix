@@ -1,7 +1,6 @@
 
 
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { useEffect,useState } from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -89,7 +88,6 @@ const SignUp = (props) => {
         }  
     }
     const responseGoogle = async(response)=>{
-        console.log(response)
         let userGoogle={
             firstName: response.profileObj.givenName,
             lastName: response.profileObj.familyName,
@@ -99,12 +97,34 @@ const SignUp = (props) => {
             country:"Norway",
             google:true
         }
-        let res = await props.postNewUser(userGoogle)
-        if(res.data.success){
-            alert("joyaa")
-        }else{
-            alert("algo salio mal")
-        }
+        props.postNewUser(userGoogle)
+        .then((res)=>{
+            if(res.data && !res.data.success && res.data.errors){
+                setErrors({})
+                res.data.errors.map(error=>setErrors(msjError=>{
+                    return{
+                        ...msjError,
+                        [error.path]: error.message,
+                    }
+                }))
+            }else if( res.data && !res.data.success){
+                Toast.fire({
+                    icon: 'error',
+                    title: res.data.error
+                  }) 
+            }else if(res.data && res.data.success){
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Cool your username was created successfully'
+                  })
+            }else{//este es el caso en que no tengo comunicacion con el back!
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Sorry we have technical problems'
+                  })
+            }
+        })
+        
         
     }
         
@@ -131,6 +151,7 @@ const SignUp = (props) => {
                         </select>
                         <p>{errors.country }</p> 
                         <button onClick={submit} className=" boton-send btn btn-primary my-2" type="button" >SEND</button>
+                        <h4>OR</h4>
                         <GoogleLogin
                             clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
                             buttonText="Sign Up with Google"

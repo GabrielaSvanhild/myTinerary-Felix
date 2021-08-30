@@ -1,7 +1,6 @@
 import axios from 'axios'
 const citiesActions={
-    getAllCities:(token)=>{
-        console.log(token)
+    getAllCities:()=>{
         return async (dispatch,getState)=>{
             try{
                 let response= await axios.get('http://localhost:4000/api/cities')

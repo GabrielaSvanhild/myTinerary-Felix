@@ -10,18 +10,16 @@ import { connect } from 'react-redux';
 import citiesActions from '../redux/actions/citiesActions'
 
 const Cities = (props) => {
-    console.log(props)
     const[loading,setLoading]=useState(true)
-    const{filteredCities}=props// destructuro cities de props.cities 
-                    //para poder usar solo cities
+    const{filteredCities}=props
+                 
     useEffect(()=>{
         window.scrollTo(0,0)
         props.getCities()
         .then((res)=>{
             if(res && res.error){
                 swal("Error","Sorry the cities are not found" ,"error")
-                /* props.history.push("/") */
-                setLoading(false)
+                     props.history.push("/") 
             }else{
                 
                 setLoading(false)
