@@ -33,9 +33,28 @@ const userActions={
            dispatch({ type: 'LOG_OUT' })
         }
      },
-     logInLS: (token, firstName, src) => {
-        return (dispatch, getState) => {
-            dispatch({ type: 'LOG_IN', payload: { token, firstName, src } })
+     logInLS: (token) => {
+        return async (dispatch, getState) => {
+           try {
+              let response = await axios.get(
+                 'http://localhost:4000/api/users/validation',
+                 {
+                    headers: {
+                       Authorization: 'Bearer ' + token,
+                    },
+                 }
+              )
+              dispatch({
+                 type: 'LOG_IN',
+                 payload: {
+                    token,
+                    firstName: response.data.firstName,
+                    src: response.data.src,
+                 },
+              })
+           } catch (error) {
+              return dispatch({ type: 'LOG_OUT' })
+           }
         }
      },
 

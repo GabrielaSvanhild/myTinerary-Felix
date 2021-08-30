@@ -62,7 +62,7 @@ Index js
       //{abortEarly:false}=>es para que evalue todos los errores, luego con la props messagges puedo hacer mis propios errores
       const validation= schema.validate(req.body, {abortEarly:false})
       if(!validation.error){
-         bext()
+         next()
       }else{
          console.log(validation.error.details)=>es un array de objeto con 4 props message, path,etc..=>EL PATH ES EL CAMPO DEL PROBLEMA Y EL ERROR ES EL TIPO DE ERROR
       }

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password:{ type: String},
     src:{ type: String},
     country:{ type: String},
-    admin:{ type : Boolean, default : false }
+    google:{type:Boolean, default:false}
 })
 
 const User = mongoose.model('user', userSchema)

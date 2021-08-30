@@ -7,6 +7,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions'
+import GoogleLogin from 'react-google-login'
 
 
 const SignUp = (props) => {
@@ -60,7 +61,6 @@ const SignUp = (props) => {
         }else{ 
             props.postNewUser(dataUser)
             .then((res)=>{
-                console.log(res.data)
                 if(res.data && !res.data.success && res.data.errors){
                     setErrors({})
                     res.data.errors.map(error=>setErrors(msjError=>{
@@ -69,13 +69,6 @@ const SignUp = (props) => {
                             [error.path]: error.message,
                         }
                     }))
-                    console.log(errors)
-                     /* array.map(obj=>setErrors(msjError=>{
-                        return{
-                            ...msjError,
-                [obj.nombre]: obj.cualidad,
-             }
-           }))  */
                 }else if( res.data && !res.data.success){
                     Toast.fire({
                         icon: 'error',
@@ -95,6 +88,25 @@ const SignUp = (props) => {
             })
         }  
     }
+    const responseGoogle = async(response)=>{
+        console.log(response)
+        let userGoogle={
+            firstName: response.profileObj.givenName,
+            lastName: response.profileObj.familyName,
+            email:response.profileObj.email,
+            password:response.profileObj.googleId,
+            src: response.profileObj.imageUrl,
+            country:"Norway",
+            google:true
+        }
+        let res = await props.postNewUser(userGoogle)
+        if(res.data.success){
+            alert("joyaa")
+        }else{
+            alert("algo salio mal")
+        }
+        
+    }
         
     return(
         <>
@@ -104,20 +116,28 @@ const SignUp = (props) => {
                     <div className="form-signIn">
                         <h2 className="title-form">Create an Account!</h2>
                         <input type="text" name="firstName" id="firstName" placeholder="FirstName" onChange={inputHandler} />
-                        <p>{errors.firstName}</p>
+                        <p>{errors.firstName}</p> 
                         <input type="text" name="lastName" id="lastName" placeholder="LastName" onChange={inputHandler}/>
-                        <p>{errors.lastName}</p>
+                        <p>{errors.lastName }</p> 
                         <input type="email" name="email" id="email"  placeholder="E-mail" onChange={inputHandler}/>
-                        <p>{errors.email}</p> 
+                        <p>{errors.email }</p> 
                         <input type="password" name="password" id="password" placeholder="Password" onChange={inputHandler}/>
-                        <p>{errors.password}</p> 
-                        <input type="url" name="src" id="src" placeholder="Url of your picture" onChange={inputHandler}/>
-                        <p>{errors.url}</p> 
+                        <p>{errors.password }</p> 
+                        <input className={errors.src && 'estilo_error'} type="url" name="src" id="src" placeholder="Url of your picture" onChange={inputHandler}/>
+                        <p>{errors.src }</p> 
                         <select name="country" onChange={inputHandler} >
                         <option className="option-country">Country</option>
                         {countries.map((country)=><option key={country.name} value={country.name}>{country.name}</option>)}
                         </select>
-                        <button onClick={submit} className="btn btn-primary my-2" type="button" >SEND</button>
+                        <p>{errors.country }</p> 
+                        <button onClick={submit} className=" boton-send btn btn-primary my-2" type="button" >SEND</button>
+                        <GoogleLogin
+                            clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
+                            buttonText="Sign Up with Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
                     </div>
                 </div>
                 

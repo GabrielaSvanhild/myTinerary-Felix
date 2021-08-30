@@ -9,7 +9,7 @@ const validator = require('../controllers/validator')
 
 router
    .route('/cities')
-      .get(passport.authenticate('jwt',{session:false}),citiesControllers.obtenerTotalCities)
+      .get(citiesControllers.obtenerTotalCities)
       .post(citiesControllers.crearNuevaCity)
       
 
@@ -29,6 +29,9 @@ router.route('/itinerary/:id')
 
 router.route('/itineraries/:id')
    .get(itinerariesControllers.getItinerariesOfCity)
+
+router.route('/users/validation')
+   .get(passport.authenticate('jwt',{session:false}),userControllers.authenticateToken)
 
 router.route('/users')
    .get(userControllers.getUser)

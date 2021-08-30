@@ -9,11 +9,11 @@ const userControllers={
         .catch(error=> res.json({success:false, response: error.message}))
     },
     newUser:(req,res)=>{
-        const{firstName, lastName, email, password, src, country, admin}=req.body
+        const{firstName, lastName, email, password, src, country,google}=req.body
         let hashedPassword= bcryptjs.hashSync(password,10)
         // validacion que el usuario no exista y la contraseña sea correcta
         const newUser= new User({
-            firstName, lastName, email, password: hashedPassword, src, country, admin 
+            firstName, lastName, email, password: hashedPassword, src, country,google
         })
         User.findOne({email : email})
         .then((user)=>{
@@ -32,11 +32,14 @@ const userControllers={
         .catch(error=>{res.json({success: false, response: null, error: error.message})}) 
     },
     userLogued:(req,res)=>{
-        const {email, password} = req.body
+        const {email, password, flagGoogle} = req.body
         User.findOne({email: email})
         .then(user=>{
             if(!user){
                 throw new Error('E-mail/Password incorrect')       
+            }
+            if(user.google && !flagGoogle ){
+                throw new Error('You have an account with google, login with google please!') 
             }
             let coincidence = bcryptjs.compareSync(password, user.password) 
             if(coincidence){
@@ -52,6 +55,9 @@ const userControllers={
             res.json({ success: false, baseDeDatosError: (error.message === 'UserName/Password incorrect'), error: error.message}) 
         })
     },
+    authenticateToken:(req,res)=>{
+        res.json({ firstName: req.user.firstName, src: req.user.src })
+    }
 
 }
 module.exports = userControllers

@@ -4,21 +4,12 @@ const citiesActions={
         console.log(token)
         return async (dispatch,getState)=>{
             try{
-                let response= await axios.get('http://localhost:4000/api/cities',{
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                     },
-
-                })
-
-                    if(!response.data.success){
-                        /* throw new Error() */
-                        
+                let response= await axios.get('http://localhost:4000/api/cities')
+                    if(!response.data.success){                 
                     return{success:false, error:"error"}   
                     }
                     dispatch({type:"GET_ALL_CITIES", payload:response.data.response })
             }catch(e){
-                console.log("llegue al catch del action")
                 return{success:false, error:e}   
             }      
         }

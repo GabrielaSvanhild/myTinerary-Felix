@@ -16,7 +16,7 @@ const Cities = (props) => {
                     //para poder usar solo cities
     useEffect(()=>{
         window.scrollTo(0,0)
-        props.getCities(props.token)
+        props.getCities()
         .then((res)=>{
             if(res && res.error){
                 swal("Error","Sorry the cities are not found" ,"error")
@@ -28,7 +28,7 @@ const Cities = (props) => {
             }
         })
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.token])
+    },[])
     const inputHandler=(e)=>{
     props.filterCities(e.target.value)
     }
@@ -91,7 +91,6 @@ const mapDispatchToProps = {
  const mapStateToProps = (state)=>{
      return{ //retorna un objeto por eso llaves
         filteredCities: state.cities.filtered_cities,
-        token: state.user.token,
      }
  }
  

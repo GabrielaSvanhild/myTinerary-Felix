@@ -4,6 +4,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions'
+import GoogleLogin from 'react-google-login'
 
 const SignIn = (props) => {
 
@@ -62,6 +63,19 @@ const SignIn = (props) => {
             })
         }     
     }
+    const responseGoogle= async(response)=>{
+        let userGoogle={
+            email:response.profileObj.email,
+            password:response.profileObj.googleId,
+            flagGoogle: true,
+        }
+        let res = await props.logUser(userGoogle)
+        if(res.data.success){
+            alert("joyaa")
+        }else{
+            alert("algo salio mal")
+        }
+    }
 
     return(
         <>
@@ -72,7 +86,14 @@ const SignIn = (props) => {
                         <h2 className="title-form">Welcome back!</h2>
                         <input type="email" name="email" onChange={inputHandler} placeholder="E-mail"/> 
                         <input type="password" name="password" onChange={inputHandler} placeholder="Password"/>
-                        <button onClick={submit} className="btn btn-primary my-2" >SEND</button>
+                        <button onClick={submit} className="boton-send btn btn-primary my-2" >SEND</button>
+                        <GoogleLogin
+                            clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
+                            buttonText="Sign Up with Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
                     </div>
                 </div>
             </main>
