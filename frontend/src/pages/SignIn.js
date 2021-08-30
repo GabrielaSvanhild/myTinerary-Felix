@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions'
 import GoogleLogin from 'react-google-login'
+import { Link } from 'react-router-dom'
 
 const SignIn = (props) => {
 
@@ -108,6 +109,7 @@ const SignIn = (props) => {
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
                         />
+                        <h5>Don't have an account? </h5><Link to="/sign_up"><h6>Sign up here!</h6></Link> 
                     </div>
                 </div>
             </main>

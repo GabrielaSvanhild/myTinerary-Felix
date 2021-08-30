@@ -524,7 +524,7 @@ transition: .5s;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.05rem;
+    gap: 0.4rem;
     background-color:rgba(255, 255, 255, 0.296);
     width: 60%;
     border-radius: 10px;
@@ -565,8 +565,18 @@ button div span{
     border: none;
     background-color: #344af0;
 }
-.form-signIn select {
-    color: #49494b
+.form-signIn select, .form-signIn h6  {
+    color: #49494b;
+    
+}
+.form-signIn h6{
+    color: #f1f1f5;
+    text-decoration: underline;
+}
+.form-signIn a{
+text-decoration: none;
+
+background-color: #43435243
 }
 ::placeholder { color: #49494b; }
 .title-form{
