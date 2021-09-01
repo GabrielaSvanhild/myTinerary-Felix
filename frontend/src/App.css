@@ -253,7 +253,7 @@ span.carousel-control-next-icon, span.carousel-control-prev-icon {
     border-radius: 10px;
 }
 
-.texto-carousel{
+.texto-carousel {
     width: 100%;
     height: 15%;
     text-align: center;
@@ -331,7 +331,7 @@ input{
     background-color: rgba(58, 56, 56, 0.358);
     font-size:3vmin;
     text-shadow: 1px 1px 2px black;
-    font-size: 3.5vmin;
+    font-size: 5vmin;
     height: 15%;
     background-color: rgba(0, 0, 0, 0.39); 
 }
@@ -341,7 +341,7 @@ transition: .5s;
 }
 
 .foto-cities h3:hover{
-    font-size: 5vmin;
+    font-size: 6vmin;
     height: 100% ;
     background-color: rgba(0, 0, 0, 0.071);   
 }  
@@ -446,7 +446,11 @@ transition: .5s;
 
 
 /* ITINERARIOS */
-
+.fa-heart{
+    width: 4rem;
+    height: 4rem;
+    color: red;
+}
 .cardItinerary{
     margin:2rem 3rem;
     border: 2px solid #6b7ae9;
@@ -501,11 +505,56 @@ transition: .5s;
 .horas, .price, .corazon{
     font-size: 3vmin;
 }
+.corazon{
+    cursor: pointer;
+}
 .hashtag{
     display: flex;
     gap:0.3rem
 }
+.contenedor-activities{
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    gap: 1rem;
+}
+#foto-activity{
+    width: 50%;
+    height:90%;
+    background-position: 50% 20%;
+    background-size: cover;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
 
+.texto-activity {
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.358);
+    color: #efeae4;
+    font: bold;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size:3vmin;
+    text-shadow: 1px 1px 2px black;
+}
+.texto-activity{
+    transition: .5s;
+}
+
+.texto-activity:hover{
+    font-size:4vmin;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.064);   
+}
+.titulo-activities{
+    font-size: 5vmin;
+    font-family: 'Open Sans', sans-serif;
+}
 
 /* SIGN UP */
 .main-form{
@@ -659,9 +708,11 @@ text-align: center;
     width: 5vmin;
     height: 4vmin;
     margin: 0.2rem auto;
+    cursor: pointer
 }
 .nav-footer a{
     text-decoration: none;
+    cursor: pointer
 
 } 
 .nav-footer p, .contenedor-contacto p{

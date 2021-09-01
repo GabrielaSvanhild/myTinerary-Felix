@@ -8,7 +8,7 @@ const Hero = () => {
                 <source src="/assets/video_hero.mp4"/>
             </video>
             <div className="contenedor-hero">
-                <div className="titulo">
+                <div className="titulo my-3">
                     <h1> MY<span className="tinerary">TINERARY</span> </h1>
                 </div>
                 <div className="contenedor-slogan"> 

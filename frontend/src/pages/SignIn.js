@@ -1,6 +1,5 @@
 import Header from '../components/Header'
 import {useState, useEffect } from 'react';
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions'

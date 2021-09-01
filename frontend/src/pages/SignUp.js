@@ -79,7 +79,8 @@ const SignUp = (props) => {
                         icon: 'success',
                         title: 'Cool your username was created successfully'
                       })
-                }else{//este es el caso en que no tengo comunicacion con el back!
+                }else{
+                    //este es el caso en que no tengo comunicacion con el back!
                     Toast.fire({
                         icon: 'error',
                         title: 'Sorry we have technical problems'
@@ -109,6 +110,7 @@ const SignUp = (props) => {
                     }
                 }))
             }else if( res.data && !res.data.success){
+                console.log("llegue al elseif")
                 Toast.fire({
                     icon: 'error',
                     title: res.data.error
@@ -118,7 +120,8 @@ const SignUp = (props) => {
                     icon: 'success',
                     title: 'Cool your username was created successfully'
                   })
-            }else{//este es el caso en que no tengo comunicacion con el back!
+            }else{
+                //este es el caso en que no tengo comunicacion con el back!
                 Toast.fire({
                     icon: 'error',
                     title: 'Sorry we have technical problems'

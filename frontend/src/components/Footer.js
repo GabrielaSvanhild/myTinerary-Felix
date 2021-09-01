@@ -80,7 +80,7 @@ const mapDispatchToProps={
 export default connect(mapStateToProps,mapDispatchToProps)(Footer)
 
 
-{/* <footer
+/* <footer
 style={{
    backgroundImage:`url("/assets/foto-footer.png")`,
 }}>
@@ -112,9 +112,9 @@ style={{
       </div>
    </div>
    <h4> © MYtinerary Project 2021 - All Rights Reserved</h4>
-</footer> */}
+</footer> */
 
-{/* <div className="contenedor-principal-footer">
+/* <div className="contenedor-principal-footer">
 
 </div>
- */}
+ */

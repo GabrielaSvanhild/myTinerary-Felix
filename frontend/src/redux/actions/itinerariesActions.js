@@ -31,7 +31,28 @@ const itinerariesActions={
             }
             
         }
-    }
+    },
+    likeDislikeItinerary:(id,token)=>{
+        return async (dispatch,getState)=>{
+            try{
+                let response= await axios.put(
+                    `http://localhost:4000/api/itinerary/like/${id}`,
+                    {
+                        headers: {
+                        Authorization: 'Bearer ' + token,
+                        },
+                    }
+                )
+              if(response.data.success)  {
+                  return{success:true, response: response.data.response}
+              }else throw new Error()
+            }catch(e){
+                return{success:false, error:e}    
+
+            }
+        }
+    },
+
 
 }
 export default itinerariesActions
