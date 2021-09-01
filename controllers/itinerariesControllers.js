@@ -75,6 +75,19 @@ const itinerariesControllers={
             }
         })
         .catch((error)=>res.json({success:false, response:error})) 
-    }
+    },
+    addCommentItinerary:(req,res)=>{
+        Itinerary.findOneAndUpdate({_id:req.params.id},{$push:{comments:{comment:req.body.comment, userId:req.user._id }}},{new:true})
+        .then((itinerary_new_comment)=>{
+            res.json({success:true,response:itinerary_new_comment.comments})
+        })
+        .catch(error=>res.json({success:false, error:error.message}))
+    },
+    deleteComment:(req,res)=>{
+        Itinerary.findOneAndUpdate({"comments._id":req.params.id},
+        {$pull:{comments:{_id:req.params.id}}},{new:true})
+       .then(comment_deleted=>res.json({success:true, response:comment_deleted.comments}))
+       .catch(error=> res.json({success:false, response:error}))
+    },
 }
 module.exports = itinerariesControllers

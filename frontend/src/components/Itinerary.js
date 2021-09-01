@@ -4,13 +4,13 @@ import activityActions from '../redux/actions/activityActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
-import axios from 'axios'
 
 
 const Itinerary =(props)=>{
     const itinerary=props.itinerary 
     const [activities,setActivities]=useState([])
     const [view,setView] =useState(false)
+    const [numberLikes, setNumberlikes]=useState(itinerary.likes)
 
     const Toast = Swal.mixin({
         toast: true,
@@ -47,22 +47,12 @@ const Itinerary =(props)=>{
                 title: "You must be logged in to like a post"
               }) 
         }else{
-            console.log("entre")
-            console.log(props.token)
-            axios.put(
-                `http://localhost:4000/api/itinerary/like/${itinerary._id}`,
-                {
-                    headers: {
-                    Authorization: 'Bearer ' +props.token,
-                    },
-                }
-            ).then((res)=>console.log(res))
-            .catch(error=> console.log(error))
-            /* props.likeDislike(itinerary._id,props.token)
+             props.likeDislike(itinerary._id,props.token)
             .then(res=>{
+                setNumberlikes(res.response.likes)
                 console.log(res)
-            })  */ 
-
+            })  
+            .catch(error=> console.log(error))
         }
           
     }
@@ -79,7 +69,7 @@ const Itinerary =(props)=>{
                         <h4 className="ms-3 ">{itinerary.name_author}</h4>
                         <div className="ms-1">
                             <h6  onClick={like_dislike_click} className="text-secondary d-flex align-items-center ms-1 corazon">
-                             💜  {itinerary.likes.length}
+                             💜  {numberLikes.length}
                              </h6>
                         </div>
                     </div> 
@@ -131,7 +121,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     getActtivity:activityActions.getActivityOfItinerary,
-    likeDislike:itinerariesActions.like_dislike_itinerary
+    likeDislike:itinerariesActions.likeDislikeItinerary
  }
 
 

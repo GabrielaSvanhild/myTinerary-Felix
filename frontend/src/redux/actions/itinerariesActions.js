@@ -36,7 +36,7 @@ const itinerariesActions={
         return async (dispatch,getState)=>{
             try{
                 let response= await axios.put(
-                    `http://localhost:4000/api/itinerary/like/${id}`,
+                    `http://localhost:4000/api/itinerary/like/${id}`,{},
                     {
                         headers: {
                         Authorization: 'Bearer ' + token,

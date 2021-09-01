@@ -53,7 +53,7 @@ const City = (props) => {
             </div>
             {
                 props.itineraries.length>0
-                ?props.itineraries.map((itinerary,index)=> <Itinerary  key={index} itinerary={itinerary}/>)
+                ?props.itineraries.map((itinerary,index)=> <Itinerary  key={itinerary._id} itinerary={itinerary}/>)
                 :<NoItineraries/>
 
             }

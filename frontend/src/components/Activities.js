@@ -1,4 +1,4 @@
-
+import Comments from './Comments'
 
 const Activities=(props)=>{
     const activities=props.activities 
@@ -23,6 +23,9 @@ const Activities=(props)=>{
                         )                    
                     })
                 }
+                <div>
+                    <Comments/>
+                </div>
             </div>
 
         </>

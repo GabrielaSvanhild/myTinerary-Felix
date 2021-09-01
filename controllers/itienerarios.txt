@@ -1,0 +1,89 @@
+{
+  "success": true,
+  "response": [
+    {
+      "hashtag": [
+        "#Culture",
+        "#Art",
+        "#Adventure"
+      ],
+      "likes": [
+        "612ccfbe3b99b98447afb9a6",
+        "612c0b62ee4b3a7a719ff76e"
+      ],
+      "_id": "61220e8d5efed60d613bb4d4",
+      "comments": [],
+      "title": "One day in Oslo",
+      "photo_itinerary": "/assets/noruega-fiordos.jpeg",
+      "photo_author": "/assets/perfil1.png",
+      "name_author": "Kendra Michelson",
+      "price": 5,
+      "duration": 10,
+      "description": "Norway has truly spectacular landscapes. So visiting Oslo in one day is not crazy.",
+      "cityId": "6119ad44b5ba6f36ada91e57",
+      "__v": 0
+    },
+    {
+      "hashtag": [
+        "#Party",
+        "#Happiness",
+        "#Cheers"
+      ],
+      "likes": [
+        "612ccfbe3b99b98447afb9a6",
+        "612c0b62ee4b3a7a719ff76e"
+      ],
+      "_id": "61220f850e71470d8f83c000",
+      "comments": [],
+      "title": "Night in Oslo",
+      "photo_itinerary": "/assets/restaurant-oslo.jpeg",
+      "photo_author": "/assets/perfil2.png",
+      "name_author": "Steve Hengel",
+      "price": 4,
+      "duration": 5,
+      "description": "Oslo is a small city, and so are its nightlife  offers still, there are some places you can't miss and are worth visiting.",
+      "cityId": "6119ad44b5ba6f36ada91e57",
+      "__v": 0
+    },
+    {
+      "hashtag": [
+        "#Shopping",
+        "#Comercial",
+        "#Offers"
+      ],
+      "likes": [],
+      "_id": "61221331335d900da0d31cdd",
+      "comments": [],
+      "title": "Shopping in Arendal",
+      "photo_itinerary": "/assets/shopping-arendal.jpeg",
+      "photo_author": "/assets/perfil3.png",
+      "name_author": "Beth Wayne",
+      "price": 4,
+      "duration": 3,
+      "description": "You can not stop going to the 'Alti Arendal' shopping center, it is modern and well-kept, you can find many offers!.",
+      "cityId": "6119ade2b5ba6f36ada91e68",
+      "__v": 0
+    },
+    {
+      "hashtag": [
+        "#Relax",
+        "#Arendal",
+        "#Museum"
+      ],
+      "likes": [
+        "612ccfbe3b99b98447afb9a6"
+      ],
+      "_id": "612217a4335d900da0d31ce6",
+      "comments": [],
+      "title": "Days in Arendal",
+      "photo_itinerary": "/assets/museums.jpeg",
+      "photo_author": "/assets/perfil4.png",
+      "name_author": "Diana Evanson",
+      "price": 3,
+      "duration": 5,
+      "description": "It is quite relaxed and entertaining for a day to go to the tourist attractions and museums!",
+      "cityId": "6119ade2b5ba6f36ada91e68",
+      "__v": 0
+    }
+  ]
+}
