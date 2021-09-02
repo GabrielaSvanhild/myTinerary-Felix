@@ -71,10 +71,10 @@ const itinerariesActions={
         }
         
     },
-    modifyComment:(id,comment,token)=>{
+    modifyComment:(commentId,comment,token)=>{
         return async()=>{
             try{
-                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${id}`,
+                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${commentId}`,
                 {comment, actionType:"modifyComment"},
                 {
                     headers: {
@@ -91,12 +91,11 @@ const itinerariesActions={
         }
         
     },
-    deleteComment:(id,idComment,token)=>{
-        console.log(id,idComment,token)
+    deleteComment:(idComment,token)=>{
         return async(dispatch)=>{
             try{
-                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${id}`,
-                {idComment, actionType:"deleteComment"},
+                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${idComment}`,
+                { actionType:"deleteComment"},
                 {
                     headers: {
                     Authorization: 'Bearer ' + token,

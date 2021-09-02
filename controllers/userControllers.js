@@ -24,7 +24,7 @@ const userControllers={
                 newUser.save()
                 .then((newUser)=>{
                     const token = jwt.sign({...newUser}, process.env.SECRETKEY)
-                    res.json({ success: true,response: {token, firstName:newUser.firstName,src:newUser.src} })
+                    res.json({ success: true,response: {token, firstName:newUser.firstName,src:newUser.src, _id:newUser._id} })
                 })
                 .catch((error)=>res.json({ success: false, error: "Technical problems, come back soon"}))//cuando cae aca
             }
@@ -44,7 +44,7 @@ const userControllers={
             let coincidence = bcryptjs.compareSync(password, user.password) 
             if(coincidence){
                 const token = jwt.sign({...user}, process.env.SECRETKEY)
-                res.json({success: true, response:{token,firstName:user.firstName,src:user.src }}) 
+                res.json({success: true, response:{token,firstName:user.firstName,src:user.src, _id:user._id }}) 
                 
             }else{
                 throw new Error('E-mail/Password incorrect')
@@ -56,7 +56,7 @@ const userControllers={
         })
     },
     authenticateToken:(req,res)=>{
-        res.json({ firstName: req.user.firstName, src: req.user.src })
+        res.json({ firstName: req.user.firstName, src: req.user.src,  _id:req.user._id })
     }
 
 }

@@ -50,6 +50,7 @@ const userActions={
                     token,
                     firstName: response.data.firstName,
                     src: response.data.src,
+                    _id: response.data._id
                  },
               })
            } catch (error) {

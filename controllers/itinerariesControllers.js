@@ -48,9 +48,8 @@ const itinerariesControllers={
         .catch((error)=>res.json({success:false,response:error.message}))
     },
     getItinerariesOfCity:(req,res)=>{
-        Itinerary.find({cityId:req.params.id})
+        Itinerary.find({cityId:req.params.id}).populate("comments.userId",{firstName: 1, lastName: 1, src: 1})
         .then(itineraries=>{
-            /* if(!itineraries.length) */
             if(itineraries!=null){
                 res.json({success:true,response:itineraries})
             }else{
@@ -110,7 +109,19 @@ const itinerariesControllers={
                 break;
 
             case 'deleteComment':
-                try{
+            try{
+                let comment_deleted = await Itinerary.findOneAndUpdate({"comments._id":req.params.id},
+                {$pull:{comments:{_id:req.params.id}}})
+                if (comment_deleted) {
+                    res.json({success: true})
+                } else {
+                    throw new Error()
+                }
+            }catch(error) {
+                res.json({success:false,response:error.message})
+            }
+            break;
+                /* try{
                     let comment_deleted = await Itinerary.findOneAndUpdate({"comments._id":req.body.idComment},
                     {$pull:{comments:{_id:req.body.idComment}}})
                     if (comment_deleted) {
@@ -121,7 +132,7 @@ const itinerariesControllers={
                 }catch(error) {
                     res.json({success:false,response:error.message})
                 }
-                break;
+                break; */
         }
 
     }
