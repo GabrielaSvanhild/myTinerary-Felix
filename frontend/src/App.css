@@ -632,6 +632,19 @@ background-color: #43435243
     text-align: center;
 }
 
+.caja_de_comentarios{
+    width: 100%;
+    height: 50%;
+    background-color: rgb(255, 177, 21);
+    overflow-y: auto;
+}
+div.caja_de_comentarios::-webkit-scrollbar-thumb{
+    color: red;
+    background-color: #344af0;
+}
+.titulo_comments{
+    font-size: 10vmin;
+}
 
 /* FOOTER */
 

@@ -4,6 +4,7 @@ import activityActions from '../redux/actions/activityActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
+import Comments from './Comments'
 
 
 const Itinerary =(props)=>{
@@ -11,6 +12,7 @@ const Itinerary =(props)=>{
     const [activities,setActivities]=useState([])
     const [view,setView] =useState(false)
     const [numberLikes, setNumberlikes]=useState(itinerary.likes)
+
 
     const Toast = Swal.mixin({
         toast: true,
@@ -103,7 +105,8 @@ const Itinerary =(props)=>{
             </div> 
             <div className="boton-itinerios-view">
                 {
-                    view && <Activities activities={activities}/>
+                    view && <> <Activities activities={activities}/> <Comments itinerary_id={itinerary._id} comments={itinerary.comments} /> </>
+                
                 }
                 <button onClick={changeButton} className="btn btn-primary my-2" type="button" data-bs-toggle="collapse"    >
                     {!view ? "View More" : "View Less"  }

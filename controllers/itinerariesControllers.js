@@ -76,8 +76,59 @@ const itinerariesControllers={
         })
         .catch((error)=>res.json({success:false, response:error})) 
     },
-    addCommentItinerary:(req,res)=>{
-        Itinerary.findOneAndUpdate({_id:req.params.id},{$push:{comments:{comment:req.body.comment, userId:req.user._id }}},{new:true})
+    modifyItineraryComment:async(req,res)=>{
+        switch(req.body.actionType){
+
+            case 'addComment':
+                try {
+                    const itinerary_new_comment = await Itinerary.findOneAndUpdate
+                    ({_id: req.params.id}, {$push: {comments: {comment: req.body.comment, userId: req.user._id}}},
+                        {new: true}).populate('comments.userId', {firstName: 1, lastName: 1, src: 1})
+                    if (itinerary_new_comment) {
+                        res.json({success: true, response: itinerary_new_comment.comments})
+                    } else {
+                        throw new Error()
+                    }
+                } catch (error) {
+                    res.json({success:false,response:error.message})
+                }
+                break;
+                
+            case 'modifyComment':
+                try{
+                    let comment_modified = await Itinerary.findOneAndUpdate({"comments._id":req.params.id},
+                    {$set:{"comments.$.comment": req.body.comment}},{new:true})
+                    if (comment_modified) {
+                        res.json({success: true, response: comment_modified.comments})
+                    } else {
+                        throw new Error()
+                    }
+
+                }catch (error) {
+                    res.json({success:false,response:error.message})
+                }
+                break;
+
+            case 'deleteComment':
+                try{
+                    let comment_deleted = await Itinerary.findOneAndUpdate({"comments._id":req.body.idComment},
+                    {$pull:{comments:{_id:req.body.idComment}}})
+                    if (comment_deleted) {
+                        res.json({success: true})
+                    } else {
+                        throw new Error()
+                    }
+                }catch(error) {
+                    res.json({success:false,response:error.message})
+                }
+                break;
+        }
+
+    }
+    /* addCommentItinerary:(req,res)=>{
+        Itinerary.findOneAndUpdate({_id:req.params.id},
+            {$push:{comments:{comment:req.body.comment, userId:req.user._id }}},{new:true})
+        .populate('comments.userId', {firstName: 1, lastName: 1, src: 1})
         .then((itinerary_new_comment)=>{
             res.json({success:true,response:itinerary_new_comment.comments})
         })
@@ -89,5 +140,13 @@ const itinerariesControllers={
        .then(comment_deleted=>res.json({success:true, response:comment_deleted.comments}))
        .catch(error=> res.json({success:false, response:error}))
     },
+    modifyComment:(req,res)=>{
+        Itinerary.findOneAndUpdate({"comments._id":req.params.id},
+        {$set:{"comments.$.comment": req.body.comment}},{new:true})
+        .then((comment_modified)=>{
+            res.json({success:true,response:comment_modified.comments})
+        })
+        .catch((error)=>res.json({success:false,response:error.message}))
+    } */
 }
 module.exports = itinerariesControllers

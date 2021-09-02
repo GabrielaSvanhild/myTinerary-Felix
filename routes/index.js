@@ -31,13 +31,16 @@ router.route('/itinerary/like/:id')
    .put(passport.authenticate('jwt',{session:false}),itinerariesControllers.like_dislike_itinerary)
 
 router.route('/itinerary/comments/:id')
-   .post(passport.authenticate('jwt',{session:false}),itinerariesControllers.addCommentItinerary)
+   .put(passport.authenticate('jwt',{session:false}),itinerariesControllers.modifyItineraryComment)
 
 router.route('/itineraries/:id')
    .get(itinerariesControllers.getItinerariesOfCity)
 
-router.route('/comment/:id')
+/* router.route('/comment/:id')
    .delete(itinerariesControllers.deleteComment)
+   .put(itinerariesControllers.modifyComment)
+ */
+
 
 router.route('/users/validation')
    .get(passport.authenticate('jwt',{session:false}),userControllers.authenticateToken)
