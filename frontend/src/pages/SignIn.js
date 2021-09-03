@@ -95,12 +95,13 @@ const SignIn = (props) => {
             <Header/>
             <main className="main-form" style={{backgroundImage:`url("assets/Home-8.png")`}}>
                 <div className="contenedor-form">
+                    
                     <div className="form-signIn">
                         <h2 className="title-form">Welcome back!</h2>
-                        <input type="email" name="email" onChange={inputHandler} placeholder="E-mail"/> 
-                        <input type="password" name="password" onChange={inputHandler} placeholder="Password"/>
+                        <input className="email" type="email" name="email" onChange={inputHandler} placeholder="E-mail"/> 
+                        <input className="password" type="password" name="password" onChange={inputHandler} placeholder="Password"/>
                         <button onClick={submit} className="boton-send btn btn-primary my-2" >SEND</button>
-                        <h4>OR</h4>
+
                         <GoogleLogin
                             clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
                             buttonText="Sign Up with Google"

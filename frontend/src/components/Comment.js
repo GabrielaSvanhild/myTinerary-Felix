@@ -1,29 +1,54 @@
 import {  useState,useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2'
 
 const Comment= (props)=>{
 
-    console.log(props)
    const [changeInput,setChangeInput]=useState(false)
    
     const modifyText =()=>{
         setChangeInput(!changeInput)
      }
      const  inputHandler= useRef()
+
+     const confirm =()=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                props.delete_comment(props.one_comment._id,props.token)
+              Swal.fire(
+                'Deleted!',
+                'Your comment has been deleted.',
+                'success'
+              )
+            }
+          })
+
+        
+     }
      
      useEffect(()=>{
         setChangeInput(false)
      },[props.render])
      
      const user = props.one_comment.userId._id===props._id
-     console.log(props.one_comment.userId._id)
-     const comment =<div className="d-flex"> 
+     
+     const comment =<div className="d-flex contenedor-comentario"> 
                         {!changeInput ? <p>{props.one_comment.comment}</p> : <> <input ref={inputHandler} 
-                         type="text" defaultValue={props.one_comment.comment}/> <button onClick={()=>props.edit_comment(props.one_comment._id, inputHandler.current.value,props.token) }>send</button> </>}
-                        <img onClick={()=>props.delete_comment(props.one_comment._id,props.token)} src="/assets/tacho-de-reciclaje.png" alt="tacho"/>
-                        <img onClick={modifyText} src="/assets/pencil.png" alt="pencil"/>                     
+                         type="text" defaultValue={props.one_comment.comment}/> <button onClick={()=>props.edit_comment(props.one_comment._id, inputHandler.current.value,props.token) }>Send</button> </>}
+                        <div className="contenedor-iconos-comentario">
+                            <img onClick={confirm} src="/assets/tacho-de-reciclaje.png" alt="tacho"/>
+                            <img onClick={modifyText} src="/assets/pencil.png" alt="pencil"/>  
+                        </div>                   
                     </div>
-    console.log(props._id)
+
     const commentToRender= user ? comment : <p>{props.one_comment.comment}</p>
 
      
@@ -31,22 +56,19 @@ const Comment= (props)=>{
  return(
     
      <>
-        <div>
-            <img src={props.one_comment.userId.src} />
-            <h3>{props.one_comment.userId.firstName}</h3>
-            {commentToRender}
+        <div >
+          <div className="caja-foto-nombre-comentario">
+              <div className="foto-perfil-comentario" style={{backgroundImage:`url("${props.one_comment.userId.src}")` }}></div> 
+              <div className="div-comentario">
+                <h5>{props.one_comment.userId.firstName}</h5>
+                {commentToRender}
+              </div>
+              
+          </div>
+        
+           
+            
 
-          {/*   {
-                !changeInput 
-                ?<p>{props.one_comment.comment}</p>
-                :<input type="text" defaultValue={props.one_comment.comment}/>
-            }
-                
-                <img onClick={()=>props.delete_comment(props.itineraryId,props.one_comment._id,props.token)} src="/assets/tacho-de-reciclaje.png" alt="tacho"/>
-                <img onClick={modifyText} src="/assets/pencil.png" alt="pencil"/> */}
-                
-            
-            
         </div>
      </>
  )

@@ -13,6 +13,7 @@ const Itinerary =(props)=>{
     const [view,setView] =useState(false)
     const [numberLikes, setNumberlikes]=useState(itinerary.likes)
 
+    let condition = numberLikes.includes(props._id) ? "💜 " : "♡" 
 
     const Toast = Swal.mixin({
         toast: true,
@@ -71,7 +72,7 @@ const Itinerary =(props)=>{
                         <h4 className="ms-3 ">{itinerary.name_author}</h4>
                         <div className="ms-1">
                             <h6  onClick={like_dislike_click} className="text-secondary d-flex align-items-center ms-1 corazon">
-                             💜  {numberLikes.length}
+                            {condition}  {numberLikes.length}
                              </h6>
                         </div>
                     </div> 
@@ -119,6 +120,7 @@ const Itinerary =(props)=>{
 const mapStateToProps = (state) => {
     return {
        token: state.user.token,
+       _id: state.user._id
     }
  }
 

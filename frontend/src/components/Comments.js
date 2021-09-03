@@ -18,6 +18,17 @@ const Comments=(props)=>{
         props.deleteComment(itineraryId,one_comment_id,token) */
 
     const deleteComment=(one_comment_id,token)=>{
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
         props.deleteComment(one_comment_id,token)
         .then(res=>{
             if(res.success) setAllComments(allComments.filter(comment=>comment._id!==one_comment_id))
@@ -53,14 +64,18 @@ const Comments=(props)=>{
        
            
     }
+   
     
 
     return(
         <>
-            <h6 className="titulo_comments">Comments</h6>
+            <div className="contenedor-titulo-comentario">
+                <h6 className="titulo_comments">Comments</h6>
+            </div>
+            
             <div className="caja_de_comentarios">
             {
-                allComments.map(comment=><Comment
+                allComments.reverse().map(comment=><Comment
                     render={renderComments}
                     key={comment._id} itineraryId={props.itinerary_id}
                     one_comment={comment} delete_comment={deleteComment} edit_comment={editComment}
@@ -68,8 +83,10 @@ const Comments=(props)=>{
             }
               
             </div>
-            <input type = "text" ref={inputHandler}  placeholder= {!props.token && "You have to login to comment"} disabled={props.token ? false : true}  />
-            <button onClick={addComment}>Enviar</button>
+            <div className="caja-envio_comentario"> 
+                <input type = "text" ref={inputHandler}  placeholder= {!props.token && "You have to login to comment"} disabled={props.token ? false : true}  />
+                <button onClick={addComment} disabled={props.token ? false : true} >Send Comment</button>
+            </div>
         </>
         
     )

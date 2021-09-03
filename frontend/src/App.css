@@ -399,7 +399,7 @@ transition: .5s;
     color:white
 }
 .contenedor-ciudad{
-    padding: 5rem;
+    padding-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -465,7 +465,7 @@ transition: .5s;
     top: 0px;
     left:0px;
     content: ' ';
-    background-image: linear-gradient(to right, rgb(148, 157, 156), rgb(95, 98, 104), rgb(58, 58, 70));;
+    background-image: linear-gradient(to right, rgb(148, 157, 156), rgb(95, 98, 104), rgb(58, 58, 70));
     width: 100%;
     height: 100%;
    filter: blur(10px);
@@ -493,7 +493,8 @@ transition: .5s;
     display: flex;
     flex-direction: column;
 }
-.titulo-itinerario{
+
+.titulo-itinerario,.contenedor-titulo-comentario{
     align-self: center;
     background-color:  #6cbed098;
     border-radius: 10px;
@@ -507,6 +508,7 @@ transition: .5s;
 }
 .corazon{
     cursor: pointer;
+    font-size: 4.5vmin;
 }
 .hashtag{
     display: flex;
@@ -551,9 +553,10 @@ transition: .5s;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.064);   
 }
-.titulo-activities{
+.titulo-activities, .titulo_comments{
     font-size: 5vmin;
     font-family: 'Open Sans', sans-serif;
+   
 }
 
 /* SIGN UP */
@@ -590,6 +593,10 @@ transition: .5s;
     outline: none;
     width: 35%;
 }
+.form-signIn button span{
+    font-family: 'Open Sans', sans-serif;
+
+}
 .form-signIn h2{
     border: none
 }
@@ -597,6 +604,10 @@ transition: .5s;
     color:#262629;
     margin-bottom: 0.7rem;
 }
+.boton-send{
+    width: 20%
+}
+
 button div span{
     font-family: 'Open Sans', sans-serif !important;
 }
@@ -606,7 +617,13 @@ button div span{
     font-size: 0.8rem;
     width: 100%;
 }
-
+.email{
+    margin-top:1rem;
+    margin-bottom: 1rem
+}
+.password{
+    margin-bottom:2rem
+}
 .estilo_error {
     background-color: #ed1212af;
 }
@@ -632,19 +649,102 @@ background-color: #43435243
     text-align: center;
 }
 
-.caja_de_comentarios{
+
+/*COMENTARIO*/
+.caja-envio_comentario{
+    display: flex;
     width: 100%;
-    height: 50%;
-    background-color: rgb(255, 177, 21);
+}
+
+.caja-envio_comentario input{
+    width: 80%;
+    margin: 1rem auto;
+    font-family: 'Open Sans', sans-serif;
+}
+.caja-envio_comentario input::placeholder{
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.caja-envio_comentario button, .contenedor-comentario button{
+    align-self: center;
+    font-family: 'Open Sans', sans-serif;
+    border:none;
+    padding: 0.5rem;
+    border-radius: 20px;
+    background-color: #6cbed098;
+    box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.427);
+    -webkit-box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.338);
+    -moz-box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.201);
+
+}
+.contenedor-comentario button{
+    margin-left: 1rem;
+}
+.contenedor-comentario input{
+    margin-left: 1rem;
+    font-family: 'Open Sans', sans-serif 
+}
+
+.contenedor-comentario p{
+    width: 100%;
+}
+div.caja_de_comentarios{
+    width: 100%;
+    height: 20rem;
+    background-color: #efeae4;
     overflow-y: auto;
+    border-radius: 5px
 }
-div.caja_de_comentarios::-webkit-scrollbar-thumb{
-    color: red;
-    background-color: #344af0;
+
+.foto-perfil-comentario{
+    width: 5em;
+    height: 5em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center ;
+    border-radius: 100%;
 }
-.titulo_comments{
-    font-size: 10vmin;
+.caja-foto-nombre-comentario{
+    display: flex;
+    width: 90%;
+    padding: 0.5rem;
+    align-items: center;
+    gap:0.5rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.427);
+    -webkit-box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.338);
+    -moz-box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.201);
 }
+.div-comentario{
+    width: 100%
+}
+.div-comentario p{
+    color: #030709;
+}
+.contenedor-comentario{
+    width: 100%;
+}
+.contenedor-comentario  p{
+    color: black;
+}
+.contenedor-iconos-comentario{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.contenedor-iconos-comentario img{
+    width: 1.5rem;
+    align-self: center;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+.contenedor-titulo-comentario{
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
 
 /* FOOTER */
 
@@ -898,6 +998,19 @@ p,h4,h5,h6{
         flex-direction: column;
        }
 }
+@media screen and  (max-width:1160px){
+    .contenedor-activities{
+        flex-direction: column;
+        align-items: center;
+    }
+    #foto-activity{
+        width: 100%;
+        height: 80%;
+        background-position: bottom;
+    }
+}
+
+
 
 
 

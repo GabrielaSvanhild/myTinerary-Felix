@@ -155,7 +155,6 @@ const SignUp = (props) => {
                         </select>
                         <p>{errors.country }</p> 
                         <button onClick={submit} className=" boton-send btn btn-primary my-2" type="button" >SEND</button>
-                        <h4>OR</h4>
                         <GoogleLogin
                             clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
                             buttonText="Sign Up with Google"
