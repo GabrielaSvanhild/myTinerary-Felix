@@ -2,33 +2,13 @@ import  Comment from './Comment'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import { connect } from 'react-redux';
 import { useRef, useState } from 'react';
-import Swal from 'sweetalert2'
-
 
 
 const Comments=(props)=>{
- 
     const [renderComments,setRenderComments]=useState(false) 
     const [allComments, setAllComments]=useState(props.comments)
     const  inputHandler= useRef()
-   /*  const [actualComments, setActualComments]=useState(props.comments) */
-
-   
-    /* const deleteComment=(itineraryId,one_comment_id,token)=>{
-        props.deleteComment(itineraryId,one_comment_id,token) */
-
     const deleteComment=(one_comment_id,token)=>{
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
         props.deleteComment(one_comment_id,token)
         .then(res=>{
             if(res.success) setAllComments(allComments.filter(comment=>comment._id!==one_comment_id))
@@ -48,8 +28,6 @@ const Comments=(props)=>{
                 setAllComments(allComments)
                 setRenderComments(!renderComments)
             }
-          
-           
         })
         .catch(error=>console.log(error))
     }
@@ -60,13 +38,9 @@ const Comments=(props)=>{
         .then(res=>{
             inputHandler.current.value=""
             setAllComments(res.response)})
-        .catch(error=>console.log(error))
-       
-           
+        .catch(error=>console.log(error))          
     }
    
-    
-
     return(
         <>
             <div className="contenedor-titulo-comentario">
@@ -75,7 +49,7 @@ const Comments=(props)=>{
             
             <div className="caja_de_comentarios">
             {
-                allComments.reverse().map(comment=><Comment
+                allComments.map(comment=><Comment
                     render={renderComments}
                     key={comment._id} itineraryId={props.itinerary_id}
                     one_comment={comment} delete_comment={deleteComment} edit_comment={editComment}

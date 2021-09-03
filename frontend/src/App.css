@@ -998,14 +998,14 @@ p,h4,h5,h6{
         flex-direction: column;
        }
 }
-@media screen and  (max-width:1160px){
+@media screen and  (max-width:900px){
     .contenedor-activities{
         flex-direction: column;
         align-items: center;
     }
     #foto-activity{
         width: 100%;
-        height: 80%;
+        height: 100%;
         background-position: bottom;
     }
 }

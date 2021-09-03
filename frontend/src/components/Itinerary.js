@@ -53,7 +53,6 @@ const Itinerary =(props)=>{
              props.likeDislike(itinerary._id,props.token)
             .then(res=>{
                 setNumberlikes(res.response.likes)
-                console.log(res)
             })  
             .catch(error=> console.log(error))
         }
