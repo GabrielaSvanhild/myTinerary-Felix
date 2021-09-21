@@ -125,26 +125,3 @@ const mapDispatchToProps = {
 
 export default connect(null, mapDispatchToProps)(SignIn) 
 
-
-/* 
-axios.post('http://localhost:4000/api/user/signin',loggedUser)
-            .then((res)=>{
-                if(!res.data.success){
-                    Toast.fire({
-                        icon: 'error',
-                        title: res.data.error
-                      })
-                }else{
-                    Toast.fire({
-                        icon: 'success',
-                        title: "Cool your username exist"
-                      })
-                } 
-            })
-            .catch((error)=>{
-                console.log(error.message)
-                Toast.fire({
-                    icon: 'error',
-                    title: "Sorry we have technical problems"
-                  })
-            })   */

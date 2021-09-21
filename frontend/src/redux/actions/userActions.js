@@ -4,7 +4,7 @@ const userActions={
     signIn: (user)=>{
         return async(dispatch,getState)=>{
            try{
-                let response = await axios.post('http://localhost:4000/api/user/signin',{...user})
+                let response = await axios.post('https://mytinerary-felix.herokuapp.com/api/user/signin',{...user})
                 if(response.data.success){
                     dispatch({type:'LOG_IN', payload: response.data.response}) 
                 }
@@ -17,7 +17,7 @@ const userActions={
     signUp:(newUser)=>{
         return async(dispatch,getState)=>{
             try{
-                let response= await axios.post('http://localhost:4000/api/user/signup',{...newUser})
+                let response= await axios.post('https://mytinerary-felix.herokuapp.com/api/user/signup',{...newUser})
                 if (response.data.success){
                     dispatch({type:'LOG_IN', payload: response.data.response}) 
                 }
@@ -37,7 +37,7 @@ const userActions={
         return async (dispatch, getState) => {
            try {
               let response = await axios.get(
-                 'http://localhost:4000/api/users/validation',
+                 'https://mytinerary-felix.herokuapp.com/api/users/validation',
                  {
                     headers: {
                        Authorization: 'Bearer ' + token,
@@ -63,19 +63,3 @@ const userActions={
 export default userActions
 
 
-
-/* let response = await axios.post('http://localhost:4000/api/user/signup',{...newUser}) 
-            if (response.data.success){
-                dispatch({type:'SIGN_UP', payload: response.data.response})
-            }
-            return response */
-            /* try{
-                let response= axios.post('http://localhost:4000/api/user/signup',{...newUser})
-                    if(!response.data.success){
-                        return{success:false, error:response.data.error}   
-                    }
-                    dispatch({type:"LOG_IN", payload:response.data.response })
-            }catch(e){
-                return{success:false, error:"technical problems"}   
-            }    
-        } */

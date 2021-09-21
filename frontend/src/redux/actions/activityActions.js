@@ -3,7 +3,7 @@ const activityActions={
     getActivityOfItinerary:(id)=>{
         return async () =>{
             try{
-                let response= await axios.get(`http://localhost:4000/api/activities/${id}`)
+                let response= await axios.get(`https://mytinerary-felix.herokuapp.com/api/activities/${id}`)
                 if(!response.data.success){
                     return{success:false, error:"error"}    
                 }else{

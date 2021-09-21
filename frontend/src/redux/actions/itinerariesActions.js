@@ -4,7 +4,7 @@ const itinerariesActions={
     getAllItineraries:()=>{
         return async (dispatch,getState)=>{
             try{
-                let response= await axios.get('http://localhost:4000/api/itineraries')
+                let response= await axios.get('https://mytinerary-felix.herokuapp.com/api/itineraries')
                 if(!response.data.success){
                     return{success:false, error:"error"}    
                     /* throw new Error('Problems with Back-end') */
@@ -20,7 +20,7 @@ const itinerariesActions={
     getItinerariesOfOneCity:(id)=>{
         return async (dispatch,getState)=>{
             try{
-                let response= await axios.get(`http://localhost:4000/api/itineraries/${id}`)
+                let response= await axios.get(`https://mytinerary-felix.herokuapp.com/api/itineraries/${id}`)
                 if(!response.data.success) return{success:false, error:"error"}    
                     /* throw new Error('Problems with Back-end') */
                 
@@ -36,7 +36,7 @@ const itinerariesActions={
         return async (dispatch,getState)=>{
             try{
                 let response= await axios.put(
-                    `http://localhost:4000/api/itinerary/like/${id}`,{},
+                    `https://mytinerary-felix.herokuapp.com/api/itinerary/like/${id}`,{},
                     {
                         headers: {
                         Authorization: 'Bearer ' + token,
@@ -54,7 +54,7 @@ const itinerariesActions={
     addCommentItinerary:(id,comment,token)=>{
         return async()=>{
             try{
-                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${id}`,
+                let response= await axios.put(`https://mytinerary-felix.herokuapp.com/api/itinerary/comments/${id}`,
                 {comment, actionType:"addComment"},
                 {
                     headers: {
@@ -74,7 +74,7 @@ const itinerariesActions={
     modifyComment:(commentId,comment,token)=>{
         return async()=>{
             try{
-                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${commentId}`,
+                let response= await axios.put(`https://mytinerary-felix.herokuapp.com/api/itinerary/comments/${commentId}`,
                 {comment, actionType:"modifyComment"},
                 {
                     headers: {
@@ -94,7 +94,7 @@ const itinerariesActions={
     deleteComment:(idComment,token)=>{
         return async(dispatch)=>{
             try{
-                let response= await axios.put(`http://localhost:4000/api/itinerary/comments/${idComment}`,
+                let response= await axios.put(`https://mytinerary-felix.herokuapp.com/api/itinerary/comments/${idComment}`,
                 { actionType:"deleteComment"},
                 {
                     headers: {

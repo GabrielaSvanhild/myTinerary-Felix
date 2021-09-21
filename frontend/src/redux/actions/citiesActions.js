@@ -3,7 +3,7 @@ const citiesActions={
     getAllCities:()=>{
         return async (dispatch,getState)=>{
             try{
-                let response= await axios.get('http://localhost:4000/api/cities')
+                let response= await axios.get('https://mytinerary-felix.herokuapp.com/api/cities')
                     if(!response.data.success){                 
                     return{success:false, error:"error"}   
                     }
