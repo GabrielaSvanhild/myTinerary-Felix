@@ -110,7 +110,6 @@ const SignUp = (props) => {
                     }
                 }))
             }else if( res.data && !res.data.success){
-                console.log("llegue al elseif")
                 Toast.fire({
                     icon: 'error',
                     title: res.data.error

@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import Swal from 'sweetalert2'
 
 const Comment= (props)=>{
-
-   const [changeInput,setChangeInput]=useState(false)
-   
+   const [changeInput,setChangeInput]=useState(false)  
     const modifyText =()=>{
         setChangeInput(!changeInput)
      }
      const  inputHandler= useRef()
-
      const confirm =()=>{
         Swal.fire({
             title: 'Are you sure?',
@@ -29,11 +26,8 @@ const Comment= (props)=>{
                 'success'
               )
             }
-          })
-
-        
-     }
-     
+          }) 
+     }     
      useEffect(()=>{
         setChangeInput(false)
      },[props.render])
@@ -48,11 +42,7 @@ const Comment= (props)=>{
                             <img onClick={modifyText} src="/assets/pencil.png" alt="pencil"/>  
                         </div>                   
                     </div>
-
     const commentToRender= user ? comment : <p>{props.one_comment.comment}</p>
-
-     
-
  return(
     
      <>
@@ -63,23 +53,16 @@ const Comment= (props)=>{
                 <h5>{props.one_comment.userId.firstName}</h5>
                 {commentToRender}
               </div>
-              
           </div>
-        
-           
-            
-
         </div>
      </>
  )
-
 }
 const mapStateToProps=(state)=>{
     return {
         token: state.user.token,
         _id: state.user._id,
      }
-
 }
 
 export default connect(mapStateToProps)(Comment)
