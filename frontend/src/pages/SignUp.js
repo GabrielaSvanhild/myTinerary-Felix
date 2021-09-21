@@ -155,7 +155,7 @@ const SignUp = (props) => {
                         <p>{errors.country }</p> 
                         <button onClick={submit} className=" boton-send btn btn-primary my-2" type="button" >SEND</button>
                         <GoogleLogin
-                            clientId="171323830837-soags5m4c31eptkhuu3m757ufqus3t49.apps.googleusercontent.com"
+                            clientId="171323830837-f2h0o3o05bh42ij23rp4bhtgngtjog4l.apps.googleusercontent.com"
                             buttonText="Sign Up with Google"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
