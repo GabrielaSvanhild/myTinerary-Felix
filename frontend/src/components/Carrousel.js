@@ -13,7 +13,7 @@ const items =
 
     },
     {
-        src:[{ruta:"/assets/Skellefteå.jpg",
+        src:[{ruta:"/assets/Skelleftea.jpg",
         texto:"Skellefteå-Sweden", 
     },
     {
