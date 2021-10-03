@@ -118,7 +118,7 @@ const itinerariesControllers={
                     throw new Error()
                 }
             }catch(error) {
-                res.json({success:false,response:error.message})
+                res.json({success:false,response:error})
             }
             break;
                 /* try{
